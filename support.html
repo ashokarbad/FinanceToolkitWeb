@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Toolkit — Support</title>
+<meta name="description" content="Support and help for Finance Toolkit — an all-in-one personal finance app for iOS with 18 calculators, expense tracking, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0a1929;
+    --navy: #102a43;
+    --navy-mid: #1e3a5f;
+    --gold: #c9a961;
+    --gold-bright: #e0c178;
+    --steel: #486581;
+    --cream: #f8f5ef;
+    --paper: #fcfaf6;
+    --ink: #1a2533;
+    --muted: #5a6b7e;
+    --line: rgba(10, 25, 41, 0.08);
+    --shadow-sm: 0 2px 8px rgba(10, 25, 41, 0.06);
+    --shadow-md: 0 8px 32px rgba(10, 25, 41, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+    color: var(--cream);
+    padding: 80px 24px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(201, 169, 97, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h1 .accent {
+    color: var(--gold-bright);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .lede {
+    font-size: 18px;
+    color: rgba(248, 245, 239, 0.78);
+    max-width: 580px;
+    line-height: 1.6;
+  }
+
+  /* ---------- MAIN ---------- */
+  .container {
+    max-width: 920px;
+    margin: -60px auto 0;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- CONTACT CARD ---------- */
+  .contact-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .contact-text h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+
+  .contact-text p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 16px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .contact-btn:hover {
+    background: var(--navy-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 25, 41, 0.2);
+  }
+
+  .contact-btn svg { width: 18px; height: 18px; }
+
+  /* ---------- SECTION ---------- */
+  section { margin-bottom: 60px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 0;
+  }
+
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 22px 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: color 0.2s;
+  }
+
+  .faq-q:hover { color: var(--gold); }
+
+  .faq-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-icon::before {
+    width: 12px;
+    height: 1.5px;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-icon::after {
+    width: 1.5px;
+    height: 12px;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) scaleY(0); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-a { max-height: 400px; }
+
+  .faq-a-inner { padding: 0 0 24px; }
+
+  .faq-a strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- FEATURE GRID ---------- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ---------- INFO BAND ---------- */
+  .info-band {
+    background: var(--navy);
+    color: var(--cream);
+    border-radius: 20px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-band::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.12) 0%, transparent 70%);
+  }
+
+  .info-band h2 { color: var(--cream); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .info-item .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .info-item .value {
+    font-size: 15px;
+    color: rgba(248, 245, 239, 0.9);
+    line-height: 1.6;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--navy-deep);
+    color: rgba(248, 245, 239, 0.5);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  footer .brand {
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    .header { padding: 56px 20px 80px; }
+    .contact-card {
+      grid-template-columns: 1fr;
+      padding: 28px;
+      text-align: left;
+    }
+    .contact-btn { width: 100%; justify-content: center; }
+    .info-band { padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="eyebrow">Support &amp; Help Center</div>
+    <h1>How can we <span class="accent">help?</span></h1>
+    <p class="lede">Answers to common questions about Finance Toolkit — the all-in-one personal finance app for iOS. Reach out anytime; we usually reply within 48 hours.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="contact-card">
+    <div class="contact-text">
+      <h2>Get in touch</h2>
+      <p>Have a question, found a bug, or want to suggest a feature? Email us directly.</p>
+    </div>
+    <a class="contact-btn" href="mailto:ashokarbad@gmail.com?subject=Finance%20Toolkit%20Support">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="m3 7 9 6 9-6"/>
+      </svg>
+      Contact Support
+    </a>
+  </div>
+
+  <section>
+    <div class="section-label">Frequently Asked</div>
+    <h2>Common questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q">Is Finance Toolkit really free?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Every feature — all 18 calculators, expense tracking, outflow management, payment reminders, iCloud sync, exports — is completely free. There are no subscriptions, no in-app purchases, and no ads.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Does the app collect my financial data?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">No. The app works <strong>100% offline</strong> and does not require a sign-up. Your data stays on your device. If you enable iCloud sync, your data syncs through your personal Apple iCloud account — we never see it.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">How does iCloud sync work across my devices?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Finance Toolkit uses Apple's iCloud Key-Value Store. As long as you're signed in to the same Apple ID on each device and have iCloud enabled in Settings, your calculations, expenses, outflows, payments, and notes sync automatically. Initial sync can take a minute or two.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Why isn't Face ID / Touch ID unlocking the app?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Make sure biometric authentication is enabled in <strong>Settings &gt; Face ID &amp; Passcode</strong> on your device, and that Finance Toolkit has permission to use it. If biometrics fail repeatedly, the app will fall back to your device passcode. You can toggle the lock on or off inside Finance Toolkit's Settings.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">I'm not getting payment reminder notifications.<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Check that notifications are allowed for Finance Toolkit under iOS <strong>Settings &gt; Notifications</strong>. Reminders are scheduled for 9:00 AM on the day, 1 day before, or 3 days before the due date — depending on your preference inside the app. Notifications require a physical device (they don't fire on the Simulator).</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">How do I back up my data?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Open <strong>Settings &gt; Data Export</strong> inside the app to export a full backup as a JSON file. You can save it to Files, iCloud Drive, or share it elsewhere. To restore, use <strong>Data Import</strong> and choose either Merge (combine with existing data) or Replace (overwrite).</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Can I switch languages or currencies?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. The app supports 9 languages (English, Hindi, Spanish, French, Arabic, Portuguese-BR, German, Chinese Simplified, Japanese) and 11 currencies. Both can be changed at any time from within Settings, and the change applies instantly without restarting the app.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Are the calculations accurate for my country's tax / loan rules?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">The calculators use standard financial formulas (EMI, compound interest, CAGR, etc.) which are universally applicable. Tax calculators currently follow Indian Income Tax slabs (Old vs New regime). For country-specific rules outside India, treat the results as estimates and confirm with a financial professional.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">How do I report a bug or request a feature?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Email us at <strong>ashokarbad@gmail.com</strong> with a description of the issue, your iOS version, and a screenshot if possible. Feature suggestions are always welcome — many improvements come from user requests.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">What's Included</div>
+    <h2>Features at a glance</h2>
+    <div class="feature-grid">
+      <div class="feature-card"><h3>18 Calculators</h3><p>Loans, investments, tax, and retirement — all in one place.</p></div>
+      <div class="feature-card"><h3>Expense Tracker</h3><p>Categories, tags, charts, and exportable reports.</p></div>
+      <div class="feature-card"><h3>Monthly Outflow</h3><p>Track EMIs, rent, subscriptions, and salary balance.</p></div>
+      <div class="feature-card"><h3>Payment Reminders</h3><p>Local notifications for recurring payments.</p></div>
+      <div class="feature-card"><h3>Amortization Schedules</h3><p>Prepayments, step-up rates, and PDF/CSV export.</p></div>
+      <div class="feature-card"><h3>iCloud Sync</h3><p>Seamless sync across all your Apple devices.</p></div>
+      <div class="feature-card"><h3>Biometric Lock</h3><p>Face ID, Touch ID, Optic ID, or device passcode.</p></div>
+      <div class="feature-card"><h3>9 Languages, 11 Currencies</h3><p>Runtime switching for global use.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="info-band">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">Requirements</div>
+          <div class="value">iOS 18.0 or later<br>iPhone &amp; iPad</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Privacy</div>
+          <div class="value">100% offline<br>No account required<br>No data collection</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Response time</div>
+          <div class="value">Usually within 48 hours<br>Monday – Friday</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:ashokarbad@gmail.com" style="color: var(--gold-bright); text-decoration: none;">ashokarbad@gmail.com</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Finance Toolkit</div>
+  <div>&copy; 2025 Finance Toolkit. All rights reserved.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
