@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Toolkit — All-in-One Personal Finance App for iOS</title>
+<meta name="description" content="18 financial calculators, expense tracking, payment reminders, iCloud sync — completely free. No subscriptions, no ads, no sign-up.">
+<meta property="og:title" content="Finance Toolkit — Personal Finance for iOS">
+<meta property="og:description" content="18 calculators. Expense tracking. Payment reminders. 100% free, 100% offline.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0a1929;
+    --navy: #102a43;
+    --navy-mid: #1e3a5f;
+    --navy-light: #2d5278;
+    --gold: #c9a961;
+    --gold-bright: #e0c178;
+    --gold-pale: rgba(201, 169, 97, 0.12);
+    --steel: #486581;
+    --cream: #f8f5ef;
+    --paper: #fcfaf6;
+    --ink: #1a2533;
+    --muted: #5a6b7e;
+    --line: rgba(10, 25, 41, 0.08);
+    --line-light: rgba(248, 245, 239, 0.1);
+    --shadow-sm: 0 2px 8px rgba(10, 25, 41, 0.06);
+    --shadow-md: 0 8px 32px rgba(10, 25, 41, 0.1);
+    --shadow-lg: 0 24px 64px rgba(10, 25, 41, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 25, 41, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .nav-brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+
+  .nav-brand span { color: var(--gold); font-style: italic; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(248, 245, 239, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy-deep) !important;
+    padding: 9px 20px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-bright) !important; color: var(--navy-deep) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    display: flex;
+    align-items: center;
+    padding: 120px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.07) 0%, transparent 65%);
+  }
+
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.05) 0%, transparent 65%);
+  }
+
+  /* grid pattern */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 169, 97, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201, 169, 97, 0.12);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold-bright);
+    margin-bottom: 28px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(48px, 5.5vw, 72px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-bright);
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(248, 245, 239, 0.72);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 44px;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 44px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(248, 245, 239, 0.06);
+    border: 1px solid rgba(248, 245, 239, 0.12);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: rgba(248, 245, 239, 0.8);
+  }
+
+  .pill svg { width: 14px; height: 14px; color: var(--gold); }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(201, 169, 97, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201, 169, 97, 0.4);
+  }
+
+  .btn-primary svg { width: 20px; height: 20px; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(248, 245, 239, 0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    border-bottom: 1px solid rgba(248, 245, 239, 0.2);
+    padding-bottom: 2px;
+  }
+
+  .btn-secondary:hover { color: var(--gold-bright); border-color: var(--gold); }
+
+  /* ─── PHONE MOCKUP ─── */
+  .phone-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .phone {
+    width: 280px;
+    height: 572px;
+    background: #0d0d0d;
+    border-radius: 44px;
+    position: relative;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 0 0 8px #1a1a1a,
+      0 0 0 9px rgba(255,255,255,0.04),
+      0 40px 80px rgba(0,0,0,0.5),
+      0 80px 160px rgba(0,0,0,0.3);
+    animation: float 4s ease-in-out infinite;
+    overflow: hidden;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 28px;
+    background: #0d0d0d;
+    border-radius: 20px;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    position: absolute;
+    inset: 2px;
+    border-radius: 42px;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--navy-deep) 0%, #0d1f35 100%);
+  }
+
+  /* Fake app UI inside phone */
+  .app-ui {
+    padding: 56px 16px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .app-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 18px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .app-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--navy-mid));
+  }
+
+  /* stat cards */
+  .app-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-card {
+    background: rgba(201, 169, 97, 0.08);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 14px;
+    padding: 12px;
+  }
+
+  .stat-label { font-size: 9px; color: rgba(248,245,239,0.5); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+  .stat-value { font-family: 'Fraunces', Georgia, serif; font-size: 18px; color: var(--gold-bright); font-weight: 500; }
+  .stat-sub { font-size: 9px; color: rgba(248,245,239,0.4); margin-top: 2px; }
+
+  /* mini bar chart */
+  .mini-chart {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 12px;
+  }
+
+  .chart-label { font-size: 10px; color: rgba(248,245,239,0.5); margin-bottom: 10px; }
+
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 48px;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    background: linear-gradient(to top, var(--gold), rgba(201, 169, 97, 0.3));
+    transition: height 0.3s ease;
+  }
+
+  /* calculator tiles */
+  .calc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+  .calc-tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  .calc-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    margin: 0 auto 5px;
+  }
+
+  .calc-icon.home { background: linear-gradient(135deg, #2d8cf0, #1e5fa8); }
+  .calc-icon.sip  { background: linear-gradient(135deg, #34c759, #1e7a3a); }
+  .calc-icon.tax  { background: linear-gradient(135deg, #ff9500, #c47400); }
+  .calc-icon.fd   { background: linear-gradient(135deg, #af52de, #7033a0); }
+  .calc-icon.car  { background: linear-gradient(135deg, #ff3b30, #b02820); }
+  .calc-icon.nps  { background: linear-gradient(135deg, #5ac8fa, #1a8fb5); }
+
+  .calc-name { font-size: 8px; color: rgba(248,245,239,0.55); }
+
+  /* upcoming payment */
+  .payment-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .payment-left { display: flex; align-items: center; gap: 10px; }
+  .payment-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .payment-name { font-size: 11px; color: rgba(248,245,239,0.8); }
+  .payment-date { font-size: 9px; color: rgba(248,245,239,0.4); margin-top: 1px; }
+  .payment-amount { font-size: 11px; color: var(--gold); font-weight: 500; }
+
+  /* glow rings */
+  .phone-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px;
+    height: 640px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(201, 169, 97, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    background: var(--navy-deep);
+    padding: 60px 32px;
+    border-top: 1px solid rgba(201,169,97,0.1);
+    border-bottom: 1px solid rgba(201,169,97,0.1);
+  }
+
+  .stats-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    divide-x: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0 32px;
+    border-right: 1px solid rgba(248,245,239,0.06);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--gold-bright);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .stat-desc {
+    font-size: 14px;
+    color: rgba(248,245,239,0.55);
+    line-height: 1.5;
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  .section {
+    padding: 100px 32px;
+  }
+
+  .section-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+
+  h2.section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h2.section-title em {
+    font-style: italic;
+    color: var(--navy-light);
+    font-weight: 300;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  /* ─── CALCULATORS ─── */
+  .calc-section { background: var(--paper); }
+
+  .calc-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .calc-category {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-category::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .calc-category.loans::before  { background: linear-gradient(90deg, #2d8cf0, #1e5fa8); }
+  .calc-category.invest::before { background: linear-gradient(90deg, #34c759, #1e7a3a); }
+  .calc-category.retire::before { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
+
+  .calc-category:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+
+  .cat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .cat-icon.loans  { background: rgba(45,140,240,0.1); }
+  .cat-icon.invest { background: rgba(52,199,89,0.1); }
+  .cat-icon.retire { background: rgba(201,169,97,0.1); }
+
+  .cat-icon svg { width: 22px; height: 22px; }
+  .cat-icon.loans  svg { color: #2d8cf0; }
+  .cat-icon.invest svg { color: #34c759; }
+  .cat-icon.retire svg { color: var(--gold); }
+
+  .calc-category h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .calc-category .count {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .calc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .calc-tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--cream);
+    color: var(--muted);
+    border: 1px solid var(--line);
+  }
+
+  /* ─── FEATURES ─── */
+  .features-section { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 36px;
+    transition: all 0.25s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold), var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .feature-card.wide {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .feat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background: var(--gold-pale);
+  }
+
+  .feat-icon svg { width: 24px; height: 24px; color: var(--gold); }
+
+  .feature-card h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-top: 16px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .feature-list li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .feature-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 7px;
+    border-left: 1.5px solid var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+    transform: rotate(-45deg);
+  }
+
+  /* amortization visual */
+  .amort-visual {
+    background: var(--navy-deep);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .amort-title { font-size: 12px; color: rgba(248,245,239,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .donut-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .donut {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: conic-gradient(var(--gold) 0% 62%, rgba(45,82,120,0.6) 62% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .donut::after {
+    content: "";
+    width: 46px;
+    height: 46px;
+    background: var(--navy-deep);
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .donut-labels { display: flex; flex-direction: column; gap: 6px; }
+
+  .donut-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: rgba(248,245,239,0.7);
+  }
+
+  .donut-label span {
+    width: 8px; height: 8px; border-radius: 2px;
+  }
+
+  .donut-label span.principal { background: var(--gold); }
+  .donut-label span.interest  { background: rgba(45,82,120,0.9); }
+
+  .amort-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 40px;
+  }
+
+  .amort-bar { flex: 1; border-radius: 2px 2px 0 0; }
+
+  /* ─── FREE BANNER ─── */
+  .free-section {
+    background: var(--navy-deep);
+    padding: 100px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .free-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 169, 97, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .free-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .free-inner h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .free-inner h2 em {
+    font-style: italic;
+    color: var(--gold-bright);
+    font-weight: 300;
+  }
+
+  .free-inner p {
+    font-size: 18px;
+    color: rgba(248,245,239,0.65);
+    margin-bottom: 48px;
+    line-height: 1.65;
+  }
+
+  .free-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .free-feat {
+    background: rgba(248,245,239,0.04);
+    border: 1px solid rgba(248,245,239,0.08);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .free-feat h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-bright);
+    margin-bottom: 6px;
+  }
+
+  .free-feat p {
+    font-size: 13px;
+    color: rgba(248,245,239,0.5);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 120px 32px;
+    background: var(--paper);
+    text-align: center;
+  }
+
+  .cta-inner { max-width: 600px; margin: 0 auto; }
+
+  .cta-inner h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(40px, 5vw, 60px);
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .cta-inner h2 em { font-style: italic; color: var(--steel); font-weight: 300; }
+
+  .cta-inner p {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 44px;
+    line-height: 1.7;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 16px 32px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: var(--shadow-md);
+  }
+
+  .store-btn:hover {
+    background: var(--navy-deep);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .store-btn svg { width: 32px; height: 32px; color: var(--cream); }
+
+  .store-btn-text { text-align: left; }
+  .store-btn-text .line1 { font-size: 11px; color: rgba(248,245,239,0.6); letter-spacing: 0.05em; }
+  .store-btn-text .line2 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+
+  .cta-note {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-deep);
+    color: rgba(248,245,239,0.5);
+    padding: 48px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .footer-copy { font-size: 13px; }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: rgba(248,245,239,0.55);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .phone-wrap { display: none; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .stat-item { border-right: none; }
+    .calc-categories { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card.wide { grid-column: span 1; grid-template-columns: 1fr; }
+    .free-features { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .section { padding: 72px 20px; }
+    .free-section { padding: 72px 20px; }
+    .cta-section { padding: 80px 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-num { font-size: 36px; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge  { animation: fadeUp 0.6s ease both; }
+  .hero h1     { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub    { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-pills  { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-actions{ animation: fadeUp 0.6s 0.4s ease both; }
+  .phone-wrap  { animation: fadeUp 0.8s 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a href="#" class="nav-brand">Finance <span>Toolkit</span></a>
+  <ul class="nav-links">
+    <li><a href="#download" class="nav-cta">Download Free</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">iOS 18 · iPhone &amp; iPad · 100% Free</div>
+      <h1>Your finances.<br><em>Completely</em><br>under control.</h1>
+      <p class="hero-sub">18 financial calculators, expense tracking, payment reminders, and iCloud sync — all in one beautifully simple app. No subscription. No ads. No sign-up.</p>
+
+      <div class="hero-pills">
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          100% Offline
+        </span>
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Face ID Lock
+        </span>
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 14a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          iCloud Sync
+        </span>
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          PDF &amp; CSV Export
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="https://apps.apple.com/app/id583475424" class="btn-primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on App Store
+        </a>
+      </div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone-glow"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-ui">
+            <div class="app-header-bar">
+              <div class="app-title">Dashboard</div>
+              <div class="app-avatar"></div>
+            </div>
+
+            <div class="app-stats">
+              <div class="stat-card">
+                <div class="stat-label">Monthly Expense</div>
+                <div class="stat-value">₹42,800</div>
+                <div class="stat-sub">↓ 8% vs last month</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Outflows</div>
+                <div class="stat-value">₹18,500</div>
+                <div class="stat-sub">EMI + subscriptions</div>
+              </div>
+            </div>
+
+            <div class="mini-chart">
+              <div class="chart-label">Spending — Last 6 Months</div>
+              <div class="bars">
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:90%"></div>
+              </div>
+            </div>
+
+            <div class="calc-grid">
+              <div class="calc-tile">
+                <div class="calc-icon home"></div>
+                <div class="calc-name">Home Loan</div>
+              </div>
+              <div class="calc-tile">
+                <div class="calc-icon sip"></div>
+                <div class="calc-name">SIP</div>
+              </div>
+              <div class="calc-tile">
+                <div class="calc-icon tax"></div>
+                <div class="calc-name">Income Tax</div>
+              </div>
+              <div class="calc-tile">
+                <div class="calc-icon fd"></div>
+                <div class="calc-name">Fixed Deposit</div>
+              </div>
+              <div class="calc-tile">
+                <div class="calc-icon car"></div>
+                <div class="calc-name">Vehicle Loan</div>
+              </div>
+              <div class="calc-tile">
+                <div class="calc-icon nps"></div>
+                <div class="calc-name">NPS</div>
+              </div>
+            </div>
+
+            <div class="payment-item">
+              <div class="payment-left">
+                <div class="payment-dot"></div>
+                <div>
+                  <div class="payment-name">LIC Premium</div>
+                  <div class="payment-date">Due in 3 days</div>
+                </div>
+              </div>
+              <div class="payment-amount">₹4,200</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">18</div>
+      <div class="stat-desc">Financial calculators<br>across loans, investments &amp; tax</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-desc">Export formats<br>PDF, CSV &amp; JSON backup</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">11</div>
+      <div class="stat-desc">Currencies including<br>INR, USD, AED, EUR &amp; more</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">₹0</div>
+      <div class="stat-desc">Cost — forever free,<br>no subscriptions, no ads</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CALCULATORS ============ -->
+<section class="section calc-section" id="calculators">
+  <div class="section-inner">
+    <div class="eyebrow">Calculators</div>
+    <h2 class="section-title">Every number you need,<br><em>answered instantly.</em></h2>
+    <p class="section-sub">18 calculators purpose-built for Indian personal finance — from home loans to NPS to income tax regime comparison.</p>
+
+    <div class="calc-categories">
+      <div class="calc-category loans">
+        <div class="cat-icon loans">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Loans</h3>
+        <div class="count">10 calculators</div>
+        <div class="calc-tags">
+          <span class="calc-tag">Home Loan</span>
+          <span class="calc-tag">Vehicle</span>
+          <span class="calc-tag">Personal</span>
+          <span class="calc-tag">Education</span>
+          <span class="calc-tag">Business</span>
+          <span class="calc-tag">Gold Loan</span>
+          <span class="calc-tag">Loan Against Property</span>
+          <span class="calc-tag">Agricultural</span>
+          <span class="calc-tag">Credit Line</span>
+          <span class="calc-tag">Consumer Durable</span>
+        </div>
+      </div>
+
+      <div class="calc-category invest">
+        <div class="cat-icon invest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Investments</h3>
+        <div class="count">5 calculators</div>
+        <div class="calc-tags">
+          <span class="calc-tag">SIP</span>
+          <span class="calc-tag">Mutual Fund (Lump Sum)</span>
+          <span class="calc-tag">SWP</span>
+          <span class="calc-tag">Fixed Deposit</span>
+          <span class="calc-tag">Recurring Deposit</span>
+        </div>
+      </div>
+
+      <div class="calc-category retire">
+        <div class="cat-icon retire">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>Tax &amp; Retirement</h3>
+        <div class="count">4 calculators</div>
+        <div class="calc-tags">
+          <span class="calc-tag">Income Tax (Old vs New)</span>
+          <span class="calc-tag">NPS</span>
+          <span class="calc-tag">Provident Fund</span>
+          <span class="calc-tag">Gratuity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section features-section" id="features">
+  <div class="section-inner">
+    <div class="eyebrow">Features</div>
+    <h2 class="section-title">Everything you need.<br><em>Nothing you don't.</em></h2>
+    <p class="section-sub">Built for daily use, not just occasional calculations. Track, plan, and stay on top of your finances.</p>
+
+    <div class="features-grid">
+
+      <div class="feature-card wide">
+        <div>
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3z"/><path d="M3 10h18v4H3z"/><path d="M3 17h18v4H3z"/></svg>
+          </div>
+          <h3>Amortization Schedules</h3>
+          <p>Go beyond the EMI number. See the full month-by-month breakdown of principal, interest, and outstanding balance.</p>
+          <ul class="feature-list">
+            <li>Prepayments — one-time or recurring extra payments</li>
+            <li>Step-up EMI — increase periodically to save interest</li>
+            <li>Custom EMI — see exactly how many months you save</li>
+            <li>Existing loan mode — account for EMIs already paid</li>
+            <li>Export as PDF or CSV</li>
+          </ul>
+        </div>
+        <div class="amort-visual">
+          <div class="amort-title">Loan Breakdown</div>
+          <div class="donut-row">
+            <div class="donut"></div>
+            <div class="donut-labels">
+              <div class="donut-label"><span class="principal"></span> Principal — 62%</div>
+              <div class="donut-label"><span class="interest"></span> Interest — 38%</div>
+            </div>
+          </div>
+          <div style="font-size:10px; color: rgba(248,245,239,0.35); margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase;">Balance Over Time</div>
+          <div class="amort-bars">
+            <div class="amort-bar" style="height:90%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:82%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:74%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:65%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:55%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:44%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:33%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:20%; background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+            <div class="amort-bar" style="height:9%;  background: linear-gradient(to top, var(--gold), rgba(201,169,97,0.25));"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Payment Reminders</h3>
+        <p>Never miss a due date. Track LIC, rent, subscriptions, and loan EMIs with local notifications.</p>
+        <ul class="feature-list">
+          <li>One-Time, Monthly, Quarterly, Half-Yearly, Yearly</li>
+          <li>Alerts on day, 1 day, or 3 days before</li>
+          <li>Dashboard countdown for upcoming payments</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Monthly Outflow</h3>
+        <p>Know exactly how much leaves your account every month — EMIs, subscriptions, rent, utilities.</p>
+        <ul class="feature-list">
+          <li>Per-month salary tracking with remaining balance</li>
+          <li>Bar chart with category breakdown</li>
+          <li>Yearly projections and Quick Add templates</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Privacy &amp; Security</h3>
+        <p>Your financial data is yours. Always.</p>
+        <ul class="feature-list">
+          <li>Face ID / Touch ID / Optic ID / Passcode lock</li>
+          <li>Privacy screen when switching apps</li>
+          <li>100% offline — no account, no cloud server, no data collection</li>
+          <li>iCloud sync through your own Apple ID only</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <h3>Export &amp; Backup</h3>
+        <p>Your data, whenever and wherever you need it.</p>
+        <ul class="feature-list">
+          <li>Amortization schedules as PDF or CSV</li>
+          <li>Expense and outflow reports</li>
+          <li>Full JSON backup — export, import, merge or replace</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FREE SECTION ============ -->
+<section class="free-section" id="free">
+  <div class="free-inner">
+    <div class="eyebrow" style="color: var(--gold); justify-content: center; margin-bottom: 20px;">
+      <span style="width:24px; height:1.5px; background: var(--gold); display:inline-block;"></span>
+      Pricing
+    </div>
+    <h2>Completely <em>free.</em><br>No fine print.</h2>
+    <p>Every feature available from day one, for every user. No trial period, no locked tiers, no future paywalls.</p>
+
+    <div class="free-features">
+      <div class="free-feat">
+        <h4>No Subscription</h4>
+        <p>Download once, use forever. No monthly or annual fees — ever.</p>
+      </div>
+      <div class="free-feat">
+        <h4>No Ads</h4>
+        <p>Clean interface, no banners, no tracking, no monetisation of your attention.</p>
+      </div>
+      <div class="free-feat">
+        <h4>No Sign-Up</h4>
+        <p>Open the app and start. No account, no email, no password required.</p>
+      </div>
+    </div>
+
+    <a href="https://apps.apple.com/app/id583475424" class="btn-primary" target="_blank" rel="noopener" style="font-size: 16px; padding: 18px 40px;">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download Free on the App Store
+    </a>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section" id="download">
+  <div class="cta-inner">
+    <div class="eyebrow" style="justify-content: center; margin-bottom: 20px; color: var(--gold);">
+      <span style="width:24px; height:1.5px; background: var(--gold); display:inline-block;"></span>
+      Get Started
+    </div>
+    <h2>Take control of your money, <em>today.</em></h2>
+    <p>Finance Toolkit is available on the App Store for iPhone and iPad running iOS 18 or later.</p>
+
+    <a href="https://apps.apple.com/app/id583475424" class="store-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div class="store-btn-text">
+        <div class="line1">Download on the</div>
+        <div class="line2">App Store</div>
+      </div>
+    </a>
+
+    <div class="cta-note">iOS 18.0+ · iPhone &amp; iPad · Completely Free</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="footer-brand">Finance Toolkit</a>
+      <div class="footer-copy">&copy; 2025–2026 Finance Toolkit. All rights reserved.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="support.html">Support</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="mailto:ashokarbad@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
