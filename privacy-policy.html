@@ -410,7 +410,7 @@
     <div class="eyebrow">Legal &amp; Transparency</div>
     <h1>Privacy <span class="accent">Policy</span></h1>
     <p class="lede">Finance Toolkit is designed around a simple idea: your financial data is yours alone. This policy explains exactly what that means in practice — in plain language, without legalese.</p>
-    <div class="effective">Effective: 19 May 2026  ·  Last updated: 19 May 2026</div>
+    <div class="effective">Effective: 19 May 2026  ·  Last updated: 26 May 2026</div>
   </div>
 </header>
 
@@ -487,6 +487,7 @@
     <ul>
       <li>Saved calculations (loan EMIs, SIP plans, FD maturities, etc.)</li>
       <li>Expense entries with categories and tags</li>
+      <li>Receipts you scan (extracted amount, merchant, date, category) and imported bank statement transactions</li>
       <li>Monthly outflow records and salary entries</li>
       <li>Payment reminders and due dates</li>
       <li>Notes you create within the App</li>
@@ -518,8 +519,11 @@
     <h3>Notifications</h3>
     <p>Used only for local payment reminders that you create within the App. Notifications are scheduled and delivered by your device. No data is sent to or from any server. You can disable notifications anytime in iOS Settings &gt; Notifications &gt; Finance Toolkit.</p>
 
+    <h3>Camera and Photo Library</h3>
+    <p>Used only when you scan a receipt or import a receipt image. The Receipt Scanner uses Apple's on-device <strong>Vision framework</strong> to extract text — no image or data is sent to any server. You can grant or revoke access at any time from iOS Settings &gt; Finance Toolkit.</p>
+
     <h3>Files / Document access</h3>
-    <p>Used only when you explicitly export data (PDF, CSV, JSON backup) or import a backup file. The App reads and writes files only with your direct action.</p>
+    <p>Used only when you explicitly export data (PDF, CSV, JSON backup), import a backup file, or import a bank statement (PDF or CSV) for transaction parsing. The App reads and writes files only with your direct action, and all parsing happens on your device.</p>
   </section>
 
   <section id="thirdparty">
@@ -531,6 +535,9 @@
       <li><strong>iCloud Key-Value Store</strong> — for optional sync</li>
       <li><strong>LocalAuthentication framework</strong> — for biometric unlock</li>
       <li><strong>UserNotifications framework</strong> — for local reminders</li>
+      <li><strong>Vision framework</strong> — for on-device OCR (Receipt Scanner)</li>
+      <li><strong>PDFKit</strong> — for on-device bank statement parsing</li>
+      <li><strong>WidgetKit</strong> — for Home Screen and Lock Screen widgets</li>
       <li><strong>App Store</strong> — for distribution and updates</li>
     </ul>
     <p>These are governed by Apple's own privacy practices, available at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
@@ -592,7 +599,7 @@
 
 <footer>
   <div class="brand">Finance Toolkit</div>
-  <div>&copy; 2025 Finance Toolkit. All rights reserved.</div>
+  <div>&copy; 2025–2026 Finance Toolkit. All rights reserved.</div>
   <div class="links">
     <a href="https://ashokarbad.github.io/FinanceToolkitWeb/support.html">Support</a>
     <a href="https://ashokarbad.github.io/FinanceToolkitWeb/privacy-policy.html">Privacy Policy</a>

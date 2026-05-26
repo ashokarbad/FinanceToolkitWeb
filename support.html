@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finance Toolkit — Support</title>
-<meta name="description" content="Support and help for Finance Toolkit — an all-in-one personal finance app for iOS with 18 calculators, expense tracking, and more.">
+<meta name="description" content="Support and help for Finance Toolkit — an all-in-one personal finance app for iOS with 19 calculators, expense tracking, receipt scanning, bank statement import, widgets, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -173,6 +173,38 @@
   }
 
   .contact-btn svg { width: 18px; height: 18px; }
+
+  /* Download button — gold variant of contact-btn */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 16px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(201, 169, 97, 0.25);
+  }
+
+  .download-btn:hover {
+    background: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(201, 169, 97, 0.35);
+  }
+
+  .download-btn svg { width: 22px; height: 22px; }
+
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
 
   /* ---------- SECTION ---------- */
   section { margin-bottom: 60px; }
@@ -376,6 +408,8 @@
       text-align: left;
     }
     .contact-btn { width: 100%; justify-content: center; }
+    .download-btn { width: 100%; justify-content: center; }
+    .contact-actions { width: 100%; align-items: stretch; }
     .info-band { padding: 36px 28px; }
   }
 </style>
@@ -395,15 +429,23 @@
   <div class="contact-card">
     <div class="contact-text">
       <h2>Get in touch</h2>
-      <p>Have a question, found a bug, or want to suggest a feature? Email us directly.</p>
+      <p>Have a question, found a bug, or want to suggest a feature? Email us directly — or download the app from the App Store.</p>
     </div>
-    <a class="contact-btn" href="mailto:toolkitfinance@gmail.com?subject=Finance%20Toolkit%20Support">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="5" width="18" height="14" rx="2"/>
-        <path d="m3 7 9 6 9-6"/>
-      </svg>
-      Contact Support
-    </a>
+    <div class="contact-actions">
+      <a class="download-btn" href="https://apps.apple.com/us/app/financetoolkitt/id6771048581" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        Download on App Store
+      </a>
+      <a class="contact-btn" href="mailto:toolkitfinance@gmail.com?subject=Finance%20Toolkit%20Support">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+        Contact Support
+      </a>
+    </div>
   </div>
 
   <section>
@@ -412,7 +454,7 @@
 
     <div class="faq-item">
       <button class="faq-q">Is Finance Toolkit really free?<span class="faq-icon"></span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes. Every feature — all 18 calculators, expense tracking, outflow management, payment reminders, iCloud sync, exports — is completely free. There are no subscriptions, no in-app purchases, and no ads.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Every feature — all 19 calculators, expense tracking, receipt scanner, bank statement import, outflow management, payment reminders, widgets, iCloud sync, and exports — is completely free. There are no subscriptions, no in-app purchases, and no ads.</div></div>
     </div>
 
     <div class="faq-item">
@@ -451,6 +493,21 @@
     </div>
 
     <div class="faq-item">
+      <button class="faq-q">How does the receipt scanner work?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Open <strong>Expenses &gt; Scan Receipt</strong> and either take a photo with your camera or pick an image from your library. The app uses Apple's on-device <strong>Vision OCR</strong> to extract the total amount, merchant name, and date, then auto-categorises the expense into one of 27 categories. Everything runs locally — no image leaves your device. If the OCR misreads a character (for example the ₹ symbol as a "7"), the app automatically detects and strips the stray character before saving the amount.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">Can I import my bank statement?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Go to <strong>Expenses &gt; Import Bank Statement</strong> and select a PDF or CSV file from your bank. The app parses transactions (UPI, NEFT, IMPS, ECS, and more) and auto-categorises each one using a 300+ keyword engine across 27 categories. You can review and edit categories before adding the transactions as expenses. The app also learns from your corrections — recategorise once and it remembers next time. All parsing happens on your device.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">What widgets are available?<span class="faq-icon"></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Six widgets across Home Screen and Lock Screen: <strong>Monthly Summary</strong> (expense + outflow totals with savings indicator), <strong>Upcoming Payments</strong> (next dues with countdown), <strong>Quick Expense</strong> (month total with top category), <strong>Spending Categories</strong> (top 5 with proportion bars), <strong>Monthly Outflow</strong> (Lock Screen), and <strong>Scan Receipt</strong> (tap to open camera). Long-press your Home Screen, tap "+", search for Finance Toolkit, and pick a size.</div></div>
+    </div>
+
+    <div class="faq-item">
       <button class="faq-q">How do I report a bug or request a feature?<span class="faq-icon"></span></button>
       <div class="faq-a"><div class="faq-a-inner">Email us at <strong>toolkitfinance@gmail.com</strong> with a description of the issue, your iOS version, and a screenshot if possible. Feature suggestions are always welcome — many improvements come from user requests.</div></div>
     </div>
@@ -460,10 +517,13 @@
     <div class="section-label">What's Included</div>
     <h2>Features at a glance</h2>
     <div class="feature-grid">
-      <div class="feature-card"><h3>18 Calculators</h3><p>Loans, investments, tax, and retirement — all in one place.</p></div>
-      <div class="feature-card"><h3>Expense Tracker</h3><p>Categories, tags, charts, and exportable reports.</p></div>
+      <div class="feature-card"><h3>19 Calculators</h3><p>Loans, investments, tax, and retirement — all in one place.</p></div>
+      <div class="feature-card"><h3>Expense Tracker</h3><p>27 categories, tags, charts, and exportable reports.</p></div>
+      <div class="feature-card"><h3>Receipt Scanner</h3><p>On-device OCR extracts amount, merchant, and date from photos.</p></div>
+      <div class="feature-card"><h3>Bank Statement Import</h3><p>Parse PDF or CSV statements with auto-categorisation.</p></div>
       <div class="feature-card"><h3>Monthly Outflow</h3><p>Track EMIs, rent, subscriptions, and salary balance.</p></div>
       <div class="feature-card"><h3>Payment Reminders</h3><p>Local notifications for recurring payments.</p></div>
+      <div class="feature-card"><h3>6 Widgets</h3><p>Home Screen and Lock Screen widgets for expenses, payments, and quick scan.</p></div>
       <div class="feature-card"><h3>Amortization Schedules</h3><p>Prepayments, step-up rates, and PDF/CSV export.</p></div>
       <div class="feature-card"><h3>iCloud Sync</h3><p>Seamless sync across all your Apple devices.</p></div>
       <div class="feature-card"><h3>Biometric Lock</h3><p>Face ID, Touch ID, Optic ID, or device passcode.</p></div>
@@ -498,7 +558,7 @@
 
 <footer>
   <div class="brand">Finance Toolkit</div>
-  <div>&copy; 2025 Finance Toolkit. All rights reserved.</div>
+  <div>&copy; 2025–2026 Finance Toolkit. All rights reserved.</div>
 </footer>
 
 <script>
