@@ -1,326 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — Finance Toolkit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Finance Toolkit</title>
+<meta name="description" content="Terms of Service for Finance Toolkit — the all-in-one personal finance app for iOS.">
+<meta name="theme-color" content="#0e0e10">
 
-    :root {
-      --navy:      #0d1b3e;
-      --navy-mid:  #162550;
-      --navy-soft: #1e3260;
-      --gold:      #c9a84c;
-      --gold-light:#e8c97a;
-      --gold-dim:  #a8873a;
-      --cream:     #faf8f2;
-      --text:      #1a1a2a;
-      --muted:     #4a4a6a;
-      --rule:      #ddd8c8;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-    html { scroll-behavior: smooth; }
+<style>
+  :root {
+    --ink: #0e0e10; --ink-soft: #1a1a1d; --ink-warm: #211e1a;
+    --paper: #faf5e9; --paper-warm: #f3ead4; --cream: #fdf9ef;
+    --amber: #c4831f; --amber-bright: #e09b2d; --amber-deep: #8a5a14; --amber-pale: rgba(196, 131, 31, 0.10);
+    --rust: #a8401f;
+    --muted: #6b6b6e; --muted-soft: #8a8a8d;
+    --rule: rgba(14, 14, 16, 0.10); --rule-soft: rgba(14, 14, 16, 0.06);
+    --rule-light: rgba(250, 245, 233, 0.14);
+    --shadow-sm: 0 1px 3px rgba(14, 14, 16, 0.04), 0 2px 8px rgba(14, 14, 16, 0.05);
+    --shadow-md: 0 6px 24px rgba(14, 14, 16, 0.08);
+  }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.8;
-    }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Geist', -apple-system, sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.65; -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    font-feature-settings: 'ss01' on;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.4; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  ::selection { background: var(--amber); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
 
-    header {
-      background: linear-gradient(145deg, var(--navy) 0%, var(--navy-soft) 100%);
-      padding: 3.5rem 1.5rem 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+    background: rgba(250, 245, 233, 0.78);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 21px;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px;
+  }
+  .nav-brand .mark {
+    width: 28px; height: 28px; background: var(--ink); border-radius: 7px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--amber); font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; font-weight: 600;
+  }
+  .nav-brand .it { font-style: italic; color: var(--amber-deep); }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a { font-size: 13.5px; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream); padding: 9px 18px;
+    border-radius: 999px; font-size: 13px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px; transition: all 0.25s;
+  }
+  .nav-cta:hover { background: var(--amber); color: var(--ink); transform: translateY(-1px); }
 
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 30%, rgba(201,168,76,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
+  .narrow { max-width: 820px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
 
-    .wordmark {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      opacity: 0.9;
-    }
+  /* ── HERO ── */
+  .doc-hero { padding: 160px 0 80px; position: relative; }
+  .doc-meta-row {
+    display: flex; gap: 14px; align-items: center; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--amber-pale); color: var(--amber-deep);
+    border: 1px solid rgba(196, 131, 31, 0.18);
+  }
+  .meta-pill.dark { background: var(--ink); color: var(--amber); border-color: var(--ink); }
+  .meta-pill.plain { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.2;
-    }
+  .doc-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 7vw, 96px); line-height: 0.98;
+    letter-spacing: -0.035em; font-weight: 400; color: var(--ink);
+    margin-bottom: 28px; font-variation-settings: "opsz" 144;
+  }
+  .doc-hero h1 .it { font-style: italic; color: var(--amber-deep); font-weight: 400; }
+  .doc-lede {
+    font-size: 19px; line-height: 1.55; color: var(--muted);
+    max-width: 640px; font-weight: 400;
+  }
+  .doc-lede strong { color: var(--ink); font-weight: 500; }
 
-    .gold-line {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold-light), var(--gold-dim));
-      margin: 1.2rem auto 1rem;
-      border-radius: 2px;
-    }
+  /* ── INTRO BAND (key terms) ── */
+  .keypoints {
+    background: var(--paper-warm);
+    padding: 70px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .kp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule); border-radius: 18px; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .kp-cell {
+    background: var(--cream); padding: 30px 28px;
+  }
+  .kp-cell .ico {
+    width: 28px; height: 28px; color: var(--amber-deep); margin-bottom: 16px;
+  }
+  .kp-cell h3 {
+    font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500;
+    color: var(--ink); letter-spacing: -0.01em; margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .kp-cell h3 .it { font-style: italic; color: var(--amber-deep); font-weight: 400; }
+  .kp-cell p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
 
-    .meta {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.04em;
-    }
+  /* ── TOC ── */
+  .toc-wrap { padding: 70px 0 30px; }
+  .toc-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-deep);
+    margin-bottom: 24px; display: inline-flex; align-items: center; gap: 12px;
+  }
+  .toc-label::before { content: ''; width: 5px; height: 5px; background: var(--amber); border-radius: 50%; }
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .toc-link {
+    background: var(--cream); padding: 18px 22px;
+    display: flex; align-items: center; gap: 16px;
+    transition: background 0.2s ease, padding-left 0.25s ease;
+    font-size: 14px;
+  }
+  .toc-link:hover { background: var(--paper); padding-left: 28px; }
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--amber-deep); letter-spacing: 0.05em; flex-shrink: 0;
+    background: var(--amber-pale); padding: 3px 8px; border-radius: 4px;
+  }
 
-    main {
-      max-width: 740px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
-    }
+  /* ── DOC SECTIONS ── */
+  .doc-body { padding: 40px 0 100px; }
+  .doc-section {
+    padding: 56px 0; border-bottom: 1px solid var(--rule);
+  }
+  .doc-section:last-of-type { border-bottom: none; }
+  .doc-section .num {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 13px; color: var(--amber); letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .doc-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1;
+    letter-spacing: -0.025em; font-weight: 400; color: var(--ink);
+    margin-bottom: 24px; font-variation-settings: "opsz" 144;
+  }
+  .doc-section h2 .it { font-style: italic; color: var(--amber-deep); }
+  .doc-section p {
+    font-size: 15.5px; color: var(--ink-soft); line-height: 1.7;
+    margin-bottom: 16px; max-width: 720px;
+  }
+  .doc-section p strong { color: var(--ink); font-weight: 500; }
+  .doc-section ul {
+    list-style: none; margin: 14px 0 22px; max-width: 720px;
+  }
+  .doc-section ul li {
+    padding: 8px 0 8px 28px; position: relative;
+    font-size: 15px; color: var(--ink-soft); line-height: 1.65;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .doc-section ul li:last-child { border-bottom: none; }
+  .doc-section ul li::before {
+    content: ''; position: absolute; left: 4px; top: 17px;
+    width: 6px; height: 6px; background: var(--amber); border-radius: 50%;
+  }
+  .doc-section ul li strong { color: var(--ink); font-weight: 500; }
+  .doc-section a {
+    color: var(--amber-deep); border-bottom: 1px solid var(--amber-pale);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .doc-section a:hover { color: var(--amber); border-bottom-color: var(--amber); }
 
-    .intro-box {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
-      border-radius: 12px;
-      padding: 1.6rem 1.8rem;
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
+  /* ── WARNING BOX (financial advice disclaimer) ── */
+  .warning-box {
+    background: linear-gradient(135deg, #fff4e0 0%, #fce8e0 100%);
+    border: 1px solid #f0c8a0;
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 18px 0 22px;
+    max-width: 720px;
+    display: flex; gap: 18px; align-items: start;
+  }
+  .warning-box .wb-icon {
+    width: 32px; height: 32px; background: var(--rust); color: var(--cream);
+    border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: 18px;
+  }
+  .warning-box .wb-text {
+    font-size: 14.5px; color: #6b3a14; line-height: 1.6;
+  }
+  .warning-box .wb-text strong { color: #4a2a08; font-weight: 600; }
 
-    .intro-box::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--gold-light), var(--gold-dim));
-      border-radius: 3px 0 0 3px;
-    }
+  /* ── CONTACT BAND ── */
+  .contact-band {
+    background: var(--paper-warm);
+    padding: 100px 0; text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+  .contact-band .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-deep);
+    margin-bottom: 22px; display: inline-flex; align-items: center; gap: 12px;
+  }
+  .contact-band .eyebrow::before { content: ''; width: 5px; height: 5px; background: var(--amber); border-radius: 50%; }
+  .contact-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(34px, 4.6vw, 56px); line-height: 1.04;
+    letter-spacing: -0.028em; font-weight: 400; color: var(--ink);
+    margin-bottom: 18px; font-variation-settings: "opsz" 144;
+  }
+  .contact-band h2 .it { font-style: italic; color: var(--amber-deep); }
+  .contact-band p {
+    font-size: 17px; color: var(--muted); margin-bottom: 36px;
+    max-width: 520px; margin-left: auto; margin-right: auto;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 16px 28px; border-radius: 999px; font-size: 15px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 12px;
+    transition: all 0.3s ease; box-shadow: var(--shadow-md);
+  }
+  .btn-primary:hover { background: var(--amber); color: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(196,131,31,0.20); }
+  .btn-primary svg { transition: transform 0.3s ease; }
+  .btn-primary:hover svg { transform: translate(2px, -2px); }
 
-    .intro-box p {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.95rem;
-      margin: 0;
-      font-family: 'DM Sans', sans-serif;
-    }
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(250, 245, 233, 0.55);
+    padding: 60px 0 28px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 32px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+  }
+  .footer-brand {
+    font-family: 'Fraunces', serif; font-size: 21px; color: var(--cream); font-weight: 500;
+  }
+  .footer-brand .it { font-style: italic; color: var(--amber); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a {
+    color: rgba(250, 245, 233, 0.65); font-size: 13.5px; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--amber); }
+  .footer-copy {
+    border-top: 1px solid rgba(250,245,233,0.10);
+    padding: 24px 32px 0; margin: 40px auto 0; max-width: 1100px;
+    font-size: 12.5px; color: rgba(250,245,233,0.40);
+    text-align: center;
+  }
 
-    section { margin-bottom: 2.6rem; }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    h2::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--rule), transparent);
-    }
-
-    .n {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px; height: 26px;
-      background: var(--navy);
-      color: var(--gold);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 500;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    p {
-      font-size: 0.93rem;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-      font-family: 'Source Serif 4', serif;
-      font-weight: 300;
-    }
-
-    ul { list-style: none; padding: 0; margin: 0.4rem 0 0.8rem; }
-
-    ul li {
-      font-size: 0.91rem;
-      color: var(--muted);
-      padding: 0.45rem 0 0.45rem 1.6rem;
-      position: relative;
-      font-family: 'Source Serif 4', serif;
-      font-weight: 300;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-
-    ul li:last-child { border-bottom: none; }
-
-    ul li::before {
-      content: '';
-      position: absolute;
-      left: 0.35rem;
-      top: 0.85rem;
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
-    }
-
-    .warning-box {
-      background: #fff8ed;
-      border: 1px solid #f0d08a;
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      margin: 0.8rem 0;
-      font-size: 0.88rem;
-      color: #6b4c10;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    a { color: var(--navy-soft); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--gold-dim); }
-    a:hover { color: var(--gold-dim); }
-
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.78rem;
-    }
-
-    footer .brand {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 0.6rem;
-    }
-
-    footer nav { margin-top: 0.8rem; }
-    footer nav a {
-      margin: 0 0.8rem;
-      color: rgba(255,255,255,0.5);
-      border-bottom: none;
-      font-size: 0.78rem;
-    }
-    footer nav a:hover { color: var(--gold-light); }
-  </style>
+  @media (max-width: 768px) {
+    .nav-links li:not(.nav-cta-li) { display: none; }
+    .doc-hero { padding: 120px 0 50px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .kp-grid { grid-template-columns: 1fr; }
+    .doc-section { padding: 40px 0; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .warning-box { flex-direction: column; gap: 12px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <div class="wordmark">Finance Toolkit</div>
-  <h1>Terms of Service</h1>
-  <div class="gold-line"></div>
-  <p class="meta">Effective date: May 2026 · Last updated: 26 May 2026</p>
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><span class="mark">F</span> Finance <span class="it">Toolkit</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+      <li><a href="terms-of-service.html" class="active">Terms</a></li>
+      <li class="nav-cta-li"><a href="https://apps.apple.com/us/app/financetoolkitt/id6771048581" class="nav-cta">Download →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="doc-hero">
+  <div class="narrow">
+    <div class="doc-meta-row">
+      <span class="meta-pill dark">Terms of Service</span>
+      <span class="meta-pill plain">Effective May 2026</span>
+      <span class="meta-pill plain">Last updated 26 May 2026</span>
+    </div>
+    <h1>The <span class="it">deal,</span> in plain English.</h1>
+    <p class="doc-lede">
+      By downloading or using Finance Toolkit, you agree to these terms. They are written to be <strong>clear and fair</strong> — please read them before using the App.
+    </p>
+  </div>
 </header>
 
-<main>
-  <div class="intro-box">
-    <p>By downloading or using Finance Toolkit, you agree to these terms. They are written to be clear and fair — please read them before using the app.</p>
-  </div>
-
-  <section>
-    <h2><span class="n">1</span> Acceptance of Terms</h2>
-    <p>These Terms of Service ("Terms") govern your use of Finance Toolkit (the "App"), developed and maintained by Finance Toolkit ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
-  </section>
-
-  <section>
-    <h2><span class="n">2</span> License to Use</h2>
-    <p>We grant you a personal, non-exclusive, non-transferable, revocable licence to use Finance Toolkit on Apple devices you own or control, subject to these Terms and Apple's App Store Terms of Service.</p>
-    <ul>
-      <li>You may not copy, modify, distribute, sell, or reverse-engineer the App</li>
-      <li>You may not use the App for any unlawful or unauthorised purpose</li>
-      <li>This licence is for personal, non-commercial use only</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2><span class="n">3</span> Pricing &amp; No In-App Purchases</h2>
-    <p>Finance Toolkit is completely free to download and use. Every feature is available from the moment you install the App.</p>
-    <ul>
-      <li>No subscriptions — there are no monthly or annual fees</li>
-      <li>No in-app purchases — nothing is locked behind a paywall</li>
-      <li>No advertisements and no sponsored content</li>
-      <li>No trial periods, no tiered features, no future paywalls</li>
-      <li>We reserve the right to modify, add, or remove features in future versions with or without notice</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2><span class="n">4</span> Not Financial Advice</h2>
-    <div class="warning-box">
-      ⚠️ Finance Toolkit provides calculators and tools for informational and educational purposes only. Nothing in the App constitutes financial, investment, tax, or legal advice.
+<!-- ── KEY POINTS ── -->
+<section class="keypoints">
+  <div class="narrow">
+    <div class="kp-grid">
+      <div class="kp-cell">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h3>Completely <span class="it">free</span></h3>
+        <p>No subscriptions, no in-app purchases, no ads, no trials, no future paywalls. Every feature available from install.</p>
+      </div>
+      <div class="kp-cell">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Your data, <span class="it">your control</span></h3>
+        <p>100% offline. All data stays on your device. We have no servers, no account system, no access to your information.</p>
+      </div>
+      <div class="kp-cell">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <h3>Not financial <span class="it">advice</span></h3>
+        <p>Calculators are educational tools. Results are estimates. Consult a qualified professional before making decisions.</p>
+      </div>
     </div>
-    <ul>
-      <li>Results are estimates based on the inputs you provide — always verify important figures independently</li>
-      <li>Consult a qualified financial or tax professional before making financial decisions</li>
-      <li>We are not liable for any decisions made based on the App's output</li>
-      <li>Tax calculations (Old vs New regime, NPS, PF, Gratuity) are illustrative and may not reflect the latest regulations</li>
-    </ul>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <h2><span class="n">5</span> Your Data &amp; Responsibilities</h2>
-    <p>Finance Toolkit is 100% offline. All data is stored on your device. We have no access to it.</p>
-    <ul>
-      <li>You are responsible for the accuracy of data you enter into the App</li>
-      <li>You are responsible for maintaining your own backups if iCloud sync is not enabled</li>
-      <li>Exported JSON backup files are your responsibility once shared from the App</li>
-      <li>Do not use the App in ways that violate applicable laws or regulations in your jurisdiction</li>
-    </ul>
-  </section>
+<!-- ── TOC ── -->
+<section class="toc-wrap">
+  <div class="narrow">
+    <div class="toc-label">Contents</div>
+    <div class="toc-grid">
+      <a href="#acceptance" class="toc-link"><span class="toc-num">01</span> Acceptance of Terms</a>
+      <a href="#license" class="toc-link"><span class="toc-num">02</span> License to Use</a>
+      <a href="#pricing" class="toc-link"><span class="toc-num">03</span> Pricing &amp; No IAP</a>
+      <a href="#not-advice" class="toc-link"><span class="toc-num">04</span> Not Financial Advice</a>
+      <a href="#your-data" class="toc-link"><span class="toc-num">05</span> Your Data &amp; Responsibilities</a>
+      <a href="#warranty" class="toc-link"><span class="toc-num">06</span> Disclaimer of Warranties</a>
+      <a href="#liability" class="toc-link"><span class="toc-num">07</span> Limitation of Liability</a>
+      <a href="#updates" class="toc-link"><span class="toc-num">08</span> Updates &amp; Changes</a>
+      <a href="#termination" class="toc-link"><span class="toc-num">09</span> Termination</a>
+      <a href="#law" class="toc-link"><span class="toc-num">10</span> Governing Law</a>
+      <a href="#contact" class="toc-link"><span class="toc-num">11</span> Contact</a>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2><span class="n">6</span> Disclaimer of Warranties</h2>
-    <p>Finance Toolkit is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to merchantability, fitness for a particular purpose, accuracy of calculations, or uninterrupted availability.</p>
-    <p>We do not warrant that the App will be error-free or free of bugs at all times.</p>
-  </section>
+<!-- ── SECTIONS ── -->
+<main class="doc-body">
+  <div class="narrow">
 
-  <section>
-    <h2><span class="n">7</span> Limitation of Liability</h2>
-    <p>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App — including financial losses resulting from reliance on App output or loss of data.</p>
-  </section>
+    <section class="doc-section" id="acceptance">
+      <div class="num">— 01</div>
+      <h2>Acceptance of <span class="it">Terms</span></h2>
+      <p>These Terms of Service ("Terms") govern your use of Finance Toolkit (the "App"), developed and maintained by Finance Toolkit ("we", "us", "our"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
+    </section>
 
-  <section>
-    <h2><span class="n">8</span> Updates &amp; Changes</h2>
-    <p>We may update the App or these Terms at any time. Continued use of the App after changes constitutes your acceptance. Material changes will be noted with an updated effective date on this page.</p>
-  </section>
+    <section class="doc-section" id="license">
+      <div class="num">— 02</div>
+      <h2>License to <span class="it">Use</span></h2>
+      <p>We grant you a <strong>personal, non-exclusive, non-transferable, revocable licence</strong> to use Finance Toolkit on Apple devices you own or control, subject to these Terms and Apple's App Store Terms of Service.</p>
+      <ul>
+        <li>You may <strong>not</strong> copy, modify, distribute, sell, or reverse-engineer the App.</li>
+        <li>You may <strong>not</strong> use the App for any unlawful or unauthorised purpose.</li>
+        <li>This licence is for <strong>personal, non-commercial use only</strong>.</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2><span class="n">9</span> Termination</h2>
-    <p>We reserve the right to discontinue the App at any time. If the App is discontinued, your locally stored data remains on your device and is unaffected. We are not obligated to provide refunds in the event of discontinuation.</p>
-  </section>
+    <section class="doc-section" id="pricing">
+      <div class="num">— 03</div>
+      <h2>Pricing &amp; <span class="it">No In-App Purchases</span></h2>
+      <p>Finance Toolkit is <strong>completely free</strong> to download and use. Every feature is available from the moment you install the App.</p>
+      <ul>
+        <li><strong>No subscriptions</strong> — there are no monthly or annual fees.</li>
+        <li><strong>No in-app purchases</strong> — nothing is locked behind a paywall.</li>
+        <li><strong>No advertisements</strong> and no sponsored content.</li>
+        <li><strong>No trial periods</strong>, no tiered features, no future paywalls.</li>
+        <li>We reserve the right to modify, add, or remove features in future versions with or without notice.</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2><span class="n">10</span> Governing Law</h2>
-    <p>These Terms are governed by the laws of India. Any disputes arising from use of the App shall be subject to the jurisdiction of courts in India, to the extent permitted by applicable law.</p>
-  </section>
+    <section class="doc-section" id="not-advice">
+      <div class="num">— 04</div>
+      <h2>Not Financial <span class="it">Advice</span></h2>
+      <div class="warning-box">
+        <span class="wb-icon">!</span>
+        <span class="wb-text">
+          <strong>Finance Toolkit provides calculators and tools for informational and educational purposes only.</strong> Nothing in the App constitutes financial, investment, tax, or legal advice.
+        </span>
+      </div>
+      <ul>
+        <li>Results are estimates based on the inputs you provide — always verify important figures independently.</li>
+        <li>Consult a qualified financial or tax professional before making financial decisions.</li>
+        <li>We are not liable for any decisions made based on the App's output.</li>
+        <li>Tax calculations (Old vs New regime, NPS, PF, Gratuity) are illustrative and may not reflect the latest regulations.</li>
+        <li>Investment tracking and projections (FD, RD, SIP, Mutual Fund, etc.) are estimates and do not guarantee actual returns.</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2><span class="n">11</span> Contact</h2>
-    <p>Questions about these Terms? Contact us at <a href="mailto:toolkitfinance@gmail.com">toolkitfinance@gmail.com</a></p>
-  </section>
+    <section class="doc-section" id="your-data">
+      <div class="num">— 05</div>
+      <h2>Your Data &amp; <span class="it">Responsibilities</span></h2>
+      <p>Finance Toolkit is <strong>100% offline</strong>. All data is stored on your device. We have no access to it.</p>
+      <ul>
+        <li>You are responsible for the <strong>accuracy</strong> of data you enter into the App.</li>
+        <li>You are responsible for maintaining your own <strong>backups</strong> if iCloud sync is not enabled.</li>
+        <li>Exported JSON backup files are your responsibility once shared from the App.</li>
+        <li>Important Documents stored in the App are your responsibility — keep originals safe elsewhere.</li>
+        <li>Do not use the App in ways that violate applicable laws or regulations in your jurisdiction.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="warranty">
+      <div class="num">— 06</div>
+      <h2>Disclaimer of <span class="it">Warranties</span></h2>
+      <p>Finance Toolkit is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied, including but not limited to merchantability, fitness for a particular purpose, accuracy of calculations, or uninterrupted availability.</p>
+      <p>We do not warrant that the App will be error-free or free of bugs at all times.</p>
+    </section>
+
+    <section class="doc-section" id="liability">
+      <div class="num">— 07</div>
+      <h2>Limitation of <span class="it">Liability</span></h2>
+      <p>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App — including financial losses resulting from reliance on App output or loss of data.</p>
+    </section>
+
+    <section class="doc-section" id="updates">
+      <div class="num">— 08</div>
+      <h2>Updates &amp; <span class="it">Changes</span></h2>
+      <p>We may update the App or these Terms at any time. <strong>Continued use of the App after changes constitutes your acceptance.</strong> Material changes will be noted with an updated effective date on this page.</p>
+    </section>
+
+    <section class="doc-section" id="termination">
+      <div class="num">— 09</div>
+      <h2><span class="it">Termination</span></h2>
+      <p>We reserve the right to discontinue the App at any time. If the App is discontinued, your locally stored data remains on your device and is unaffected. We are not obligated to provide refunds in the event of discontinuation.</p>
+    </section>
+
+    <section class="doc-section" id="law">
+      <div class="num">— 10</div>
+      <h2>Governing <span class="it">Law</span></h2>
+      <p>These Terms are governed by the <strong>laws of India</strong>. Any disputes arising from use of the App shall be subject to the jurisdiction of courts in India, to the extent permitted by applicable law.</p>
+    </section>
+
+  </div>
 </main>
 
+<!-- ── CONTACT BAND ── -->
+<section class="contact-band" id="contact">
+  <div class="narrow">
+    <div class="eyebrow">— 11 · Contact</div>
+    <h2>Questions about <span class="it">these terms?</span></h2>
+    <p>If anything here is unclear, please get in touch. We're happy to clarify.</p>
+    <a class="btn-primary" href="mailto:toolkitfinance@gmail.com?subject=Finance%20Toolkit%20—%20Terms%20Question">
+      Email Us
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <span class="brand">Finance Toolkit</span>
-  &copy; 2026 Finance Toolkit. All rights reserved.
-  <nav>
-    <a href="https://ashokarbad.github.io/FinanceToolkitWeb/privacy-policy.html">Privacy Policy</a>
-    <a href="https://ashokarbad.github.io/FinanceToolkitWeb/terms-of-service.html">Terms of Service</a>
-  </nav>
+  <div class="footer-inner">
+    <div class="footer-brand">Finance <span class="it">Toolkit</span></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025–2026 Finance Toolkit. All rights reserved.</div>
 </footer>
 
 </body>
