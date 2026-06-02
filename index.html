@@ -1239,16 +1239,16 @@
     background: var(--cream);
     border: 1px solid var(--rule);
     border-radius: 18px;
-    padding: 24px 22px;
+    padding: 22px 22px 24px;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    overflow: hidden;
   }
 
   .widget-card:hover {
     border-color: var(--amber);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
   }
 
@@ -1259,13 +1259,363 @@
   .widget-card.w-5 { grid-column: span 2; }
   .widget-card.w-6 { grid-column: span 6; }
 
+  /* ─── widget preview (mini mockup) ─── */
+  .widget-preview {
+    background: linear-gradient(160deg, #1a1a1d 0%, #0e0e10 100%);
+    border-radius: 18px;
+    padding: 14px 16px;
+    color: var(--cream);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+    min-height: 130px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.04) inset,
+      0 8px 18px -8px rgba(14, 14, 16, 0.30);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .widget-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(196,131,31,0.12), transparent 60%);
+    pointer-events: none;
+  }
+
+  .wp-row { position: relative; z-index: 1; }
+
+  .wp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,245,233,0.45);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .wp-label .dot { width: 5px; height: 5px; background: var(--amber); border-radius: 50%; }
+
+  .wp-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 144;
+  }
+  .wp-amount .it { font-style: italic; color: var(--amber); }
+  .wp-amount.lg { font-size: 30px; }
+  .wp-amount.sm { font-size: 18px; }
+
+  .wp-sub {
+    font-size: 10.5px;
+    color: rgba(250,245,233,0.55);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  /* w-1 Monthly Summary: progress bar */
+  .wp-bar {
+    height: 4px;
+    background: rgba(250,245,233,0.10);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+  }
+  .wp-bar-fill {
+    height: 100%;
+    width: 73%;
+    background: linear-gradient(90deg, var(--moss), var(--amber));
+    border-radius: 2px;
+    animation: barGrow 1.4s 0.3s cubic-bezier(.16,1,.3,1) backwards;
+  }
+  @keyframes barGrow { from { width: 0; } }
+
+  .wp-bar-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: rgba(250,245,233,0.6);
+    margin-top: 7px;
+    position: relative;
+    z-index: 1;
+  }
+  .wp-bar-meta .right { color: var(--amber); }
+
+  /* w-2 Upcoming Payments: row list */
+  .wp-list {
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .wp-pay-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(250,245,233,0.06);
+    font-size: 11.5px;
+    color: rgba(250,245,233,0.85);
+  }
+  .wp-pay-row:last-child { border-bottom: none; }
+
+  .wp-pay-row .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wp-pay-row .left .dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  .wp-pay-row .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+  .wp-pay-row .badge.urgent { background: rgba(168, 64, 31, 0.25); color: #f29070; }
+  .wp-pay-row .badge.soon { background: rgba(196, 131, 31, 0.20); color: var(--amber-bright); }
+  .wp-pay-row .badge.ok { background: rgba(61, 90, 61, 0.30); color: #95c195; }
+
+  /* w-3 Quick Expense: just big amount */
+  .wp-quick {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .wp-quick .wp-amount { font-size: 28px; }
+  .wp-quick .wp-cat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(196,131,31,0.15);
+    color: var(--amber);
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+  .wp-quick .wp-cat-chip svg { width: 9px; height: 9px; }
+
+  /* w-4 Spending Categories: mini bars */
+  .wp-cats {
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .wp-cat-row {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: rgba(250,245,233,0.75);
+  }
+  .wp-cat-row .name { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; text-transform: uppercase; font-size: 9px; }
+  .wp-cat-row .track {
+    height: 4px;
+    background: rgba(250,245,233,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .wp-cat-row .fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 2px;
+    animation: barGrow 1.2s 0.2s cubic-bezier(.16,1,.3,1) backwards;
+  }
+  .wp-cat-row .fill.f1 { width: 88%; background: var(--amber); }
+  .wp-cat-row .fill.f2 { width: 64%; background: var(--amber-bright); animation-delay: 0.3s; }
+  .wp-cat-row .fill.f3 { width: 42%; background: var(--rust); animation-delay: 0.4s; }
+  .wp-cat-row .fill.f4 { width: 28%; background: var(--moss); animation-delay: 0.5s; }
+  .wp-cat-row .fill.f5 { width: 14%; background: rgba(250,245,233,0.30); animation-delay: 0.6s; }
+
+  /* w-5 Monthly Outflow: lock screen circular look */
+  .wp-lock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    padding: 6px 0;
+  }
+  .wp-lock-circle {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wp-lock-circle svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+  .wp-lock-circle .bg { fill: none; stroke: rgba(250,245,233,0.10); stroke-width: 6; }
+  .wp-lock-circle .arc {
+    fill: none; stroke: var(--amber); stroke-width: 6; stroke-linecap: round;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 70;
+    animation: lockArcDraw 1.6s 0.2s ease-out backwards;
+  }
+  @keyframes lockArcDraw { from { stroke-dashoffset: 220; } }
+
+  .wp-lock-center {
+    text-align: center;
+    z-index: 1;
+  }
+  .wp-lock-center .num {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1;
+    font-weight: 500;
+  }
+  .wp-lock-center .num .it { font-style: italic; color: var(--amber); }
+  .wp-lock-center .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.10em;
+    color: rgba(250,245,233,0.55);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* w-6 Scan Receipt: wide quick-action */
+  .widget-card.w-6 .widget-preview {
+    min-height: 110px;
+    flex-direction: row;
+    align-items: center;
+    gap: 22px;
+    padding: 16px 22px;
+  }
+
+  .wp-scan-icon {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(140deg, var(--amber-bright), var(--amber-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(196,131,31,0.30);
+    position: relative;
+    z-index: 1;
+  }
+  .wp-scan-icon svg { width: 30px; height: 30px; color: var(--ink); }
+  .wp-scan-icon::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 20px;
+    border: 1px solid rgba(196,131,31,0.30);
+    animation: scanPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes scanPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.08); }
+  }
+
+  .wp-scan-body {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+  .wp-scan-body .top {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .wp-scan-body .top .it { font-style: italic; color: var(--amber); }
+  .wp-scan-body .steps {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .wp-scan-body .step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(250,245,233,0.6);
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .wp-scan-body .step::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+
+  .wp-scan-tap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border: 1px solid rgba(196,131,31,0.35);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .wp-scan-tap .pulse {
+    width: 6px; height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* size pill at bottom of card */
   .widget-size {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.10em;
     color: var(--muted-soft);
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .widget-size::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--amber);
+    border-radius: 50%;
   }
 
   .widget-card h4 {
@@ -1273,9 +1623,10 @@
     font-size: 19px;
     font-weight: 500;
     color: var(--ink);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: -0.01em;
   }
+  .widget-card h4 .it { font-style: italic; color: var(--amber-deep); font-weight: 400; }
 
   .widget-card p {
     font-size: 13px;
@@ -2154,36 +2505,130 @@
     </div>
 
     <div class="widgets-grid">
+
+      <!-- w-1 Monthly Summary -->
       <div class="widget-card w-1 reveal">
+        <div class="widget-preview">
+          <div class="wp-row">
+            <div class="wp-label"><span class="dot"></span>October</div>
+            <div class="wp-amount">₹<span class="it">42,180</span></div>
+            <div class="wp-sub">of ₹60,000 salary</div>
+          </div>
+          <div class="wp-bar"><div class="wp-bar-fill"></div></div>
+          <div class="wp-bar-meta"><span>Remaining</span><span class="right">₹17,820</span></div>
+        </div>
         <div class="widget-size">Small · Medium</div>
-        <h4>Monthly Summary</h4>
+        <h4>Monthly <span class="it">Summary</span></h4>
         <p>Expense and outflow totals, top categories, savings progress bar.</p>
       </div>
+
+      <!-- w-2 Upcoming Payments -->
       <div class="widget-card w-2 reveal" data-delay="1">
+        <div class="widget-preview">
+          <div class="wp-label"><span class="dot"></span>Upcoming Payments</div>
+          <div class="wp-list">
+            <div class="wp-pay-row">
+              <span class="left"><span class="dot" style="background:#f29070;"></span>EMI · Home Loan</span>
+              <span class="badge urgent">3 DAYS</span>
+            </div>
+            <div class="wp-pay-row">
+              <span class="left"><span class="dot" style="background:var(--amber-bright);"></span>LIC Premium</span>
+              <span class="badge soon">8 DAYS</span>
+            </div>
+            <div class="wp-pay-row">
+              <span class="left"><span class="dot" style="background:#95c195;"></span>Electricity Bill</span>
+              <span class="badge ok">12 DAYS</span>
+            </div>
+          </div>
+        </div>
         <div class="widget-size">Medium · Large</div>
-        <h4>Upcoming Payments</h4>
+        <h4>Upcoming <span class="it">Payments</span></h4>
         <p>Next-due payments with countdown badges and recurrence indicators.</p>
       </div>
+
+      <!-- w-3 Quick Expense -->
       <div class="widget-card w-3 reveal" data-delay="2">
+        <div class="widget-preview">
+          <div class="wp-label"><span class="dot"></span>This Month</div>
+          <div class="wp-quick">
+            <div class="wp-amount lg">₹<span class="it">42,180</span></div>
+            <div class="wp-cat-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11l1.6 9.4a1 1 0 0 0 1 .6h8.8a1 1 0 0 0 1-.6L19 11M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+              FOOD &amp; DINING
+            </div>
+          </div>
+        </div>
         <div class="widget-size">Small · Lock Screen</div>
-        <h4>Quick Expense</h4>
+        <h4>Quick <span class="it">Expense</span></h4>
         <p>Current month total with top spending category at a glance.</p>
       </div>
+
+      <!-- w-4 Spending Categories -->
       <div class="widget-card w-4 reveal">
+        <div class="widget-preview">
+          <div class="wp-label"><span class="dot"></span>Top 5 Categories</div>
+          <div class="wp-cats">
+            <div class="wp-cat-row"><span class="name">Food</span><div class="track"><div class="fill f1"></div></div></div>
+            <div class="wp-cat-row"><span class="name">Rent</span><div class="track"><div class="fill f2"></div></div></div>
+            <div class="wp-cat-row"><span class="name">Bills</span><div class="track"><div class="fill f3"></div></div></div>
+            <div class="wp-cat-row"><span class="name">Travel</span><div class="track"><div class="fill f4"></div></div></div>
+            <div class="wp-cat-row"><span class="name">Other</span><div class="track"><div class="fill f5"></div></div></div>
+          </div>
+        </div>
         <div class="widget-size">Medium</div>
-        <h4>Spending Categories</h4>
+        <h4>Spending <span class="it">Categories</span></h4>
         <p>Top 5 categories with proportion bars and amounts.</p>
       </div>
+
+      <!-- w-5 Monthly Outflow (Lock Screen) -->
       <div class="widget-card w-5 reveal" data-delay="1">
+        <div class="widget-preview">
+          <div class="wp-label"><span class="dot"></span>Lock Screen</div>
+          <div class="wp-lock">
+            <div class="wp-lock-circle">
+              <svg viewBox="0 0 90 90">
+                <circle class="bg" cx="45" cy="45" r="35"/>
+                <circle class="arc" cx="45" cy="45" r="35"/>
+              </svg>
+              <div class="wp-lock-center">
+                <div class="num">₹<span class="it">38k</span></div>
+                <div class="lbl">Outflow</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="widget-size">Lock Screen</div>
-        <h4>Monthly Outflow</h4>
+        <h4>Monthly <span class="it">Outflow</span></h4>
         <p>Total recurring outflow visible from the Lock Screen.</p>
       </div>
+
+      <!-- w-6 Scan Receipt (full width) -->
       <div class="widget-card w-6 reveal" data-delay="2">
+        <div class="widget-preview">
+          <div class="wp-scan-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <div class="wp-scan-body">
+            <div class="top">Tap to scan a <span class="it">receipt</span></div>
+            <div class="steps">
+              <span class="step">Camera opens</span>
+              <span class="step">OCR runs</span>
+              <span class="step">Expense added</span>
+            </div>
+          </div>
+          <div class="wp-scan-tap">
+            <span class="pulse"></span>
+            Quick action
+          </div>
+        </div>
         <div class="widget-size">Small · Lock Screen · Quick action</div>
-        <h4>Scan Receipt</h4>
+        <h4>Scan <span class="it">Receipt</span></h4>
         <p>Tap the widget — camera opens. OCR runs. Expense added. From Lock Screen, in three seconds.</p>
       </div>
+
     </div>
   </div>
 </section>
