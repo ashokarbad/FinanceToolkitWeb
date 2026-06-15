@@ -354,7 +354,7 @@
       </li>
       <li>
         <span class="check">04</span>
-        <span><strong>Face ID / Touch ID stays on your device.</strong> Biometric data never leaves iOS.</span>
+        <span><strong>Face ID / Touch ID and Speech Recognition stay on your device.</strong> Biometric data never leaves iOS. Voice transcription uses Apple's on-device Speech framework.</span>
       </li>
       <li>
         <span class="check">05</span>
@@ -424,13 +424,13 @@
       <ul>
         <li>Saved calculations (loan EMIs, SIP plans, FD maturities, etc.)</li>
         <li>Expense entries with categories and tags</li>
-        <li>Receipts you scan (extracted amount, merchant, date, category) and imported bank statement transactions</li>
+        <li>Receipts you scan (extracted amount, merchant, date, category), voice expense transcripts (processed locally), and imported bank statement transactions</li>
         <li>Investment entries (FD, RD, SIP, Mutual Fund, Stocks, PPF, NPS, Gold, and custom types)</li>
         <li>Important documents you store in the App (insurance policies, ID cards, property papers)</li>
         <li>Monthly outflow records and salary entries</li>
         <li>Payment reminders and due dates</li>
         <li>Notes you create within the App</li>
-        <li>App preferences (selected language, currency, appearance, biometric lock toggle)</li>
+        <li>App preferences (selected language, currency, appearance, biometric lock toggle, iCloud sync preference)</li>
       </ul>
       <p>If you delete the App, this data is removed from your device. If you have enabled iCloud sync, your iCloud copy persists according to your Apple iCloud settings.</p>
     </section>
@@ -444,6 +444,7 @@
         <li>Your data is transmitted directly between your device and Apple's iCloud servers.</li>
         <li>We do <strong>not</strong> operate any servers and do <strong>not</strong> receive a copy.</li>
         <li>The data is stored within your personal iCloud account and is subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</li>
+        <li>All stores sync automatically: calculations, expenses, outflow, payments, investments, documents, notes, salary history, and outflow templates.</li>
         <li>You can disable iCloud sync at any time from iOS Settings &gt; [Your Name] &gt; iCloud, or by signing out of iCloud.</li>
       </ul>
     </section>
@@ -453,13 +454,16 @@
       <h2>Permissions <span class="it">we request</span></h2>
 
       <h3>Face ID / Touch ID / Optic ID <span class="it">— biometric authentication</span></h3>
-      <p>Used only to unlock the App when biometric lock is enabled. Biometric data is handled entirely by iOS through Apple's Secure Enclave and is <strong>never accessible to us</strong>. We only receive a success/failure result.</p>
+      <p>Used to unlock the App at launch and after returning from the background (when data is present), and optionally to unmask amounts on the Dashboard. Biometric data is handled entirely by iOS through Apple's Secure Enclave and is <strong>never accessible to us</strong>. We only receive a success/failure result. If biometrics fail, the App falls back to your device passcode via Apple's standard authentication APIs.</p>
 
       <h3><span class="it">Notifications</span></h3>
       <p>Used only for local payment reminders that you create within the App. Notifications are scheduled and delivered by your device. No data is sent to or from any server. You can disable notifications anytime in iOS Settings &gt; Notifications &gt; Finance Toolkit.</p>
 
       <h3>Camera &amp; <span class="it">Photo Library</span></h3>
       <p>Used only when you scan a receipt or import a receipt image, or when you capture a document for the document vault. The Receipt Scanner uses Apple's on-device <strong>Vision framework</strong> to extract text — no image or data is sent to any server. You can grant or revoke access at any time from iOS Settings &gt; Finance Toolkit.</p>
+
+      <h3>Microphone &amp; <span class="it">Speech Recognition</span></h3>
+      <p>Used only when you activate the Voice Expense Assistant. The feature uses Apple's on-device <strong>Speech Recognition framework</strong> to transcribe what you say into an expense entry. No audio or transcript is sent to our servers. Speech processing may use Apple's servers depending on your iOS settings; this is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. You can grant or revoke both Microphone and Speech Recognition access at any time from iOS Settings &gt; Finance Toolkit.</p>
 
       <h3>Files / <span class="it">Document access</span></h3>
       <p>Used only when you explicitly export data (PDF, CSV, JSON backup), import a backup file, import a bank statement (PDF or CSV) for transaction parsing, or import documents into the document vault. The App reads and writes files only with your direct action, and all parsing happens on your device.</p>
@@ -475,6 +479,7 @@
         <li><strong>LocalAuthentication framework</strong> — for biometric unlock</li>
         <li><strong>UserNotifications framework</strong> — for local reminders</li>
         <li><strong>Vision framework</strong> — for on-device OCR (Receipt Scanner)</li>
+        <li><strong>Speech framework</strong> — for on-device voice transcription (Voice Expense Assistant)</li>
         <li><strong>PDFKit</strong> — for on-device bank statement parsing</li>
         <li><strong>WidgetKit</strong> — for Home Screen and Lock Screen widgets</li>
         <li><strong>App Store</strong> — for distribution and updates</li>

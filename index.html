@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finance Toolkit — Personal Finance for iOS. Free. Offline. Yours.</title>
-<meta name="description" content="An all-in-one personal finance app for iOS. 19 calculators, AI receipt scanner, bank statement import, investment tracker, document vault, widgets. 100% free. 100% offline. No account.">
+<meta name="description" content="An all-in-one personal finance app for iOS. 19 calculators, voice expense entry, Siri shortcut, AI receipt scanner, bank statement import, investment tracker, document vault, widgets. 9 languages. Face ID lock. 100% free. 100% offline. No account.">
 <meta name="theme-color" content="#0e0e10">
 <meta property="og:title" content="Finance Toolkit — Personal Finance for iOS">
-<meta property="og:description" content="19 calculators. AI receipt scanner. Investment tracker. Document vault. Free, offline, yours.">
+<meta property="og:description" content="19 calculators. Voice expense entry. Siri shortcut. AI receipt scanner. Investment tracker. Document vault. Free, offline, yours.">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1830,6 +1830,125 @@
     .cur-sym { font-size: 26px; }
   }
 
+  /* ──────────── LANGUAGES ──────────── */
+  .languages {
+    background: var(--paper);
+    padding: 130px 0;
+  }
+
+  .languages-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .languages-side .eyebrow { margin-bottom: 24px; display: inline-block; }
+
+  .languages-head {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(34px, 4.4vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .languages-head .it { font-style: italic; color: var(--amber-deep); }
+
+  .languages-lede {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 480px;
+  }
+
+  .language-board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .lang-cell {
+    background: var(--cream);
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 0.25s ease;
+    position: relative;
+  }
+
+  .lang-cell:hover { background: var(--paper-warm); }
+
+  .lang-cell:hover .lang-native {
+    color: var(--amber);
+    transform: translateX(3px);
+  }
+
+  .lang-native {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink);
+    font-weight: 400;
+    transition: color 0.25s ease, transform 0.3s ease;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .lang-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    color: var(--amber-deep);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .lang-english {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .lang-cell-default {
+    background: var(--paper-warm);
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 22px;
+  }
+
+  .lang-cell-default .lang-native {
+    font-size: 14px;
+    color: var(--amber-deep);
+    font-style: italic;
+  }
+
+  .lang-cell-default .lang-english {
+    color: var(--muted-soft);
+    font-size: 11.5px;
+  }
+
+  @media (max-width: 900px) {
+    .languages-inner { grid-template-columns: 1fr; gap: 50px; }
+    .language-board { grid-template-columns: repeat(2, 1fr); }
+    .lang-cell-default { grid-column: span 2; }
+  }
+
+  @media (max-width: 480px) {
+    .lang-cell { padding: 16px 14px; }
+    .lang-native { font-size: 15px; }
+  }
+
   /* ──────────── CTA ──────────── */
   .cta {
     background: var(--paper);
@@ -2030,7 +2149,7 @@
     <ul class="nav-links">
       <li><a href="#calculators">Calculators</a></li>
       <li><a href="#track">Track</a></li>
-      <li><a href="#smart">AI</a></li>
+      <li><a href="#smart">Smart</a></li>
       <li><a href="#widgets">Widgets</a></li>
       <li><a href="support.html">Support</a></li>
       <li><a href="https://apps.apple.com/us/app/financetoolkitt/id6771048581" class="nav-cta">Download<span class="arrow">→</span></a></li>
@@ -2043,8 +2162,8 @@
   <div class="container hero-grid">
     <div class="hero-text">
       <div class="hero-eyebrow reveal">
-        <span class="ver">v2.1</span>
-        <span class="txt">Documents · Investments · New</span>
+        <span class="ver">v3.0</span>
+        <span class="txt">9 Languages · Face ID Lock · New</span>
       </div>
       <h1 class="reveal" data-delay="1">
         Your money,<br>
@@ -2052,8 +2171,9 @@
         <span class="underline">Privately.</span>
       </h1>
       <p class="hero-sub reveal" data-delay="2">
-        An all-in-one personal finance app for iOS. <strong>19 calculators</strong>, AI receipt scanner,
+        An all-in-one personal finance app for iOS. <strong>19 calculators</strong>, voice expense entry with Siri, AI receipt scanner,
         bank statement import, investment tracker, document vault, and 6 widgets — all on your device.
+        Now in <strong>9 languages</strong> with <strong>Face ID / Touch ID lock</strong>.
         <strong>No account. No subscription. No ads.</strong>
       </p>
       <div class="hero-actions reveal" data-delay="3">
@@ -2069,12 +2189,12 @@
           <div class="lbl">Calculators</div>
         </div>
         <div class="stat">
-          <div class="num"><span class="it">12</span></div>
-          <div class="lbl">Currencies</div>
+          <div class="num"><span class="it">9</span></div>
+          <div class="lbl">Languages</div>
         </div>
         <div class="stat">
-          <div class="num"><span class="it">6</span></div>
-          <div class="lbl">Widgets</div>
+          <div class="num"><span class="it">11</span></div>
+          <div class="lbl">Currencies</div>
         </div>
       </div>
     </div>
@@ -2169,7 +2289,7 @@
         On the <span class="it">device</span> you already carry.
       </h2>
       <p class="lede">
-        From home loan EMIs to retirement planning. Each calculator supports favourites, save &amp; restore with notes, copy &amp; share, and works across all 12 currencies. Loans include full amortization with prepayments, step-up rates, and PDF/CSV export.
+        From home loan EMIs to retirement planning. Each calculator supports favourites, save &amp; restore with notes, copy &amp; share, and works across all 11 currencies. Loans include full amortization with prepayments, step-up rates, and PDF/CSV export.
       </p>
     </div>
 
@@ -2464,11 +2584,36 @@
     <div class="sec-head reveal">
       <div class="eyebrow" style="color: var(--amber);"><span class="dot" style="background: var(--amber);"></span>Smart capture</div>
       <h2>The boring part, <span class="it">automated.</span></h2>
-      <p class="lede">No more typing expenses one by one. Scan a receipt, import a statement — the app does the categorising. On-device. No cloud.</p>
+      <p class="lede">Speak, snap, or import — the app handles the categorising. Voice entry, receipt scanning, bank statement import, and Siri shortcut. On-device. No cloud.</p>
     </div>
 
-    <div class="smart-grid">
+    <div class="smart-grid" style="grid-template-columns: repeat(2, 1fr);">
       <div class="smart-card reveal">
+        <div class="smart-tag">Voice Expense Assistant</div>
+        <h3>Speak it. <span class="it">Done.</span></h3>
+        <p>Tap the microphone and say what you spent. Amount, category, description, and date are extracted automatically using on-device Speech Recognition — no typing required.</p>
+        <ul class="smart-features">
+          <li>Natural phrases: "Spent 450 on fuel", "Paid 1200 for internet bill", "Rent 15000 yesterday"</li>
+          <li>25+ keyword groups map to existing expense categories</li>
+          <li>Editable preview — tap any field to adjust before saving</li>
+          <li>Re-record with one tap to start fresh</li>
+          <li>Live permission state with Settings deep-link if access is denied</li>
+        </ul>
+      </div>
+
+      <div class="smart-card reveal" data-delay="1">
+        <div class="smart-tag">Hey Siri · Quick Actions</div>
+        <h3>Add an expense without <span class="it">opening the app.</span></h3>
+        <p>Say "Hey Siri, add expense in Finance Toolkit" and speak naturally — the expense saves silently in the background, even when the app is force-quit. Or long-press the icon for instant shortcuts.</p>
+        <ul class="smart-features">
+          <li>Siri shortcut works with short names: Finance, Toolkit, Money, FT</li>
+          <li>Headless AppIntent — no app launch needed, saves in background</li>
+          <li>Home Screen Quick Actions: Voice Expense and Add Expense</li>
+          <li>Works even when app is force-quit from recents</li>
+        </ul>
+      </div>
+
+      <div class="smart-card reveal" data-delay="1">
         <div class="smart-tag">Receipt Scanner</div>
         <h3>Snap. Done. <span class="it">Categorised.</span></h3>
         <p>Photograph a bill or pick from library. OCR extracts the total, merchant, and date — then auto-sorts into 27 categories.</p>
@@ -2476,11 +2621,11 @@
           <li>Smart total extraction with keyword detection (total, amount due, grand total) and last-match strategy for multi-total receipts</li>
           <li>OCR misread correction — strips stray characters when ₹ is read as 7, 2, etc.</li>
           <li>Phone number and GST filtering to avoid false amount detection</li>
-          <li>12 currency symbols supported</li>
+          <li>11 currency symbols supported</li>
         </ul>
       </div>
 
-      <div class="smart-card reveal" data-delay="1">
+      <div class="smart-card reveal" data-delay="2">
         <div class="smart-tag">Bank Statement Import</div>
         <h3>Months of expenses, in <span class="it">seconds.</span></h3>
         <p>Import a PDF or CSV bank statement. UPI, NEFT, IMPS, ECS — every transaction auto-categorised, ready to select and add.</p>
@@ -2646,8 +2791,8 @@
       <div class="privacy-grid reveal" data-delay="3">
         <div class="privacy-item">
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <h4>Face ID lock</h4>
-          <p>Biometric auth with passcode fallback</p>
+          <h4>Face ID app lock</h4>
+          <p>Full biometric gate at launch with passcode fallback</p>
         </div>
         <div class="privacy-item">
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -2674,12 +2819,12 @@
   <div class="container">
     <div class="global-inner">
       <div class="global-side reveal">
-        <div class="eyebrow"><span class="dot"></span>Twelve currencies</div>
+        <div class="eyebrow"><span class="dot"></span>Eleven currencies</div>
         <h2 class="global-head">
           Every calculation in any <span class="it">currency</span> you need.
         </h2>
         <p class="global-lede">
-          One tap to switch. All 19 calculators, expense tracking, investments, and exports adapt to your selected currency. Built-in formatters handle each region's conventions.
+          One tap to switch. All 19 calculators, expense tracking, investments, and exports adapt to your selected currency. Supports INR, USD, EUR, GBP, AED, SAR, CAD, AUD, SGD, JPY, and DOP. Built-in formatters handle each region's conventions.
         </p>
       </div>
 
@@ -2739,12 +2884,78 @@
           <span class="cur-code">DOP</span>
           <span class="cur-name">Dominican Peso</span>
         </div>
-        <div class="cur-cell cur-cell-more">
-          <span class="cur-sym">+1</span>
-          <span class="cur-code">···</span>
-          <span class="cur-name">more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── LANGUAGES ──────── -->
+<section class="languages">
+  <div class="container">
+    <div class="languages-inner">
+
+      <div class="language-board reveal">
+        <div class="lang-cell">
+          <span class="lang-native">English</span>
+          <span class="lang-code">en</span>
+          <span class="lang-english">English</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">हिन्दी</span>
+          <span class="lang-code">hi</span>
+          <span class="lang-english">Hindi</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">Español</span>
+          <span class="lang-code">es</span>
+          <span class="lang-english">Spanish</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">Français</span>
+          <span class="lang-code">fr</span>
+          <span class="lang-english">French</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">العربية</span>
+          <span class="lang-code">ar</span>
+          <span class="lang-english">Arabic · RTL</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">Português</span>
+          <span class="lang-code">pt-BR</span>
+          <span class="lang-english">Portuguese</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">Deutsch</span>
+          <span class="lang-code">de</span>
+          <span class="lang-english">German</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">中文</span>
+          <span class="lang-code">zh-Hans</span>
+          <span class="lang-english">Chinese (Simplified)</span>
+        </div>
+        <div class="lang-cell">
+          <span class="lang-native">日本語</span>
+          <span class="lang-code">ja</span>
+          <span class="lang-english">Japanese</span>
+        </div>
+        <div class="lang-cell lang-cell-default">
+          <span class="lang-native">System Default</span>
+          <span class="lang-english">Follows your device language automatically</span>
         </div>
       </div>
+
+      <div class="languages-side reveal" data-delay="1">
+        <div class="eyebrow"><span class="dot"></span>Nine languages</div>
+        <h2 class="languages-head">
+          Your finances, in your <span class="it">language.</span>
+        </h2>
+        <p class="languages-lede">
+          Switch language instantly from Settings — every screen, date, and label rebuilds in real time without restarting the app. Full UI coverage across all 1,044+ strings. Supports Arabic right-to-left layout. Set to System Default to follow your device automatically.
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
