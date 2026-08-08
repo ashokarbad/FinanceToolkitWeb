@@ -474,7 +474,7 @@
           <span class="qtxt">How does <span class="it">iCloud sync</span> work across my devices?</span>
           <span class="qicon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 1v10M1 6h10" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Finance Toolkit uses Apple's iCloud Key-Value Store. As long as you're signed in to the same Apple ID on each device and have iCloud enabled in Settings, your calculations, expenses, outflows, payments, investments, documents, notes, salary history, and outflow templates sync automatically. Initial sync can take a minute or two.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Finance Toolkit uses Apple's iCloud Key-Value Store. As long as you're signed in to the same Apple ID on each device and have iCloud enabled in Settings, your calculations, expenses, outflows, payments, investments, documents, notes, salary history, and outflow templates sync automatically. Settings shows a <strong>Last Synced</strong> timestamp so you can confirm the most recent sync at a glance. Initial sync can take a minute or two.</div></div>
       </div>
 
       <div class="faq-item">
@@ -492,7 +492,7 @@
           <span class="qtxt">I'm not getting <span class="it">payment reminder</span> notifications.</span>
           <span class="qicon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 1v10M1 6h10" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Check that notifications are allowed for Finance Toolkit under iOS <code>Settings &gt; Notifications</code>. Reminders are scheduled for 9:00 AM on the day, 1 day before, or 3 days before the due date — depending on your preference inside the app. Notifications require a physical device (they don't fire on the Simulator).</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Check that notifications are allowed for Finance Toolkit under iOS <code>Settings &gt; Notifications</code>. Reminders are scheduled for 9:00 AM on the day, 1 day before, or 3 days before the due date — depending on your preference inside the app. Notifications require a physical device (they don't fire on the Simulator). Tapping the circle on any payment row marks the current cycle as <strong>Paid</strong> — paid entries are excluded from Dashboard reminders and notifications, and the status resets automatically when the next due date arrives.</div></div>
       </div>
 
       <div class="faq-item">
@@ -555,7 +555,7 @@
           <span class="qtxt">How do <span class="it">Important Documents</span> work?</span>
           <span class="qicon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 1v10M1 6h10" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Open <code>Documents</code> and tap the add button — you can either import from the Files app or capture directly with the camera. Documents are organised into 9 categories (LIC Policy, Term Insurance, Health Insurance, Vehicle Insurance, Property Documents, Passport, PAN Card, Aadhaar Card, and Other Documents), plus custom categories with their own colour-matched filter chips. View "Storage by Category" for a breakdown with progress bars. You can edit name, category, and notes from the detail view, share or delete individual documents, save all to Files at once, or multi-select for batch delete.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Open <code>Documents</code> and tap the add button — you can either import from the Files app or capture directly with the camera. Supported file types are PDF, JPG, PNG, HEIC, Word (DOC / DOCX), and Excel (XLS / XLSX). PDFs and images preview inline; Word and Excel files open full-screen via iOS QuickLook with pinch-to-zoom and share. Imported files are copied straight into the app's private storage, so no external file references are kept. Documents are organised into 9 categories (LIC Policy, Term Insurance, Health Insurance, Vehicle Insurance, Property Documents, Passport, PAN Card, Aadhaar Card, and Other Documents), plus custom categories with their own colour-matched filter chips. View "Storage by Category" for a breakdown with progress bars. You can edit name, category, and notes from the detail view, share or delete individual documents, save all to Files at once, or multi-select for batch delete.</div></div>
       </div>
 
       <div class="faq-item">
@@ -582,7 +582,7 @@
           <span class="qtxt">How does the <span class="it">app lock</span> work?</span>
           <span class="qicon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 1v10M1 6h10" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Once you have any data in the app (expenses, investments, documents, etc.), Finance Toolkit automatically requires Face ID, Touch ID, or your device passcode at every launch and whenever you return after more than 30 seconds in the background. There's no toggle — the lock is governed by data presence, not a setting, so a fresh install skips the prompt. If biometrics fail, the app immediately falls back to your device passcode. A separate dashboard amount-mask toggle in <code>Settings → Security</code> lets you hide amounts behind an eye icon independently.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Once you have any data in the app (expenses, investments, documents, etc.), Finance Toolkit automatically requires Face ID, Touch ID, Optic ID, or your device passcode at every launch and whenever you return after more than 30 seconds in the background. There's no toggle — the lock is governed by data presence, not a setting, so a fresh install skips the prompt. If biometrics fail for any reason — cancelled, locked out, or not enrolled — the app immediately falls back to your device passcode. If Face ID permission has been revoked or no passcode is set, an alert offers <strong>Use Passcode</strong> and <strong>Open Settings</strong> so you're never locked out. A separate dashboard amount-mask toggle in <code>Settings → Security</code> lets you hide amounts behind an eye icon independently.</div></div>
       </div>
 
       <div class="faq-item">

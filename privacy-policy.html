@@ -325,7 +325,7 @@
     <div class="doc-meta-row">
       <span class="meta-pill dark">Privacy Policy</span>
       <span class="meta-pill plain">Effective May 2026</span>
-      <span class="meta-pill plain">Last updated 26 May 2026</span>
+      <span class="meta-pill plain">Last updated 9 August 2026</span>
     </div>
     <h1>We don't have your data.<br><span class="it">There's nothing to have.</span></h1>
     <p class="doc-lede">
@@ -420,17 +420,17 @@
     <section class="doc-section" id="device">
       <div class="num">— 03</div>
       <h2>Data stored on <span class="it">your device</span></h2>
-      <p>To make the App functional, certain information is stored <strong>locally on your iPhone or iPad</strong> using Apple's standard storage mechanisms (UserDefaults). This data never leaves your device unless you choose to enable iCloud sync or export a backup. It includes:</p>
+      <p>To make the App functional, certain information is stored <strong>locally on your iPhone or iPad</strong> using Apple's standard storage mechanisms (UserDefaults, plus a shared App Group container so widgets and the Siri shortcut can read and write the same on-device data). This data never leaves your device unless you choose to enable iCloud sync or export a backup. It includes:</p>
       <ul>
         <li>Saved calculations (loan EMIs, SIP plans, FD maturities, etc.)</li>
         <li>Expense entries with categories and tags</li>
         <li>Receipts you scan (extracted amount, merchant, date, category), voice expense transcripts (processed locally), and imported bank statement transactions</li>
         <li>Investment entries (FD, RD, SIP, Mutual Fund, Stocks, PPF, NPS, Gold, and custom types)</li>
-        <li>Important documents you store in the App (insurance policies, ID cards, property papers)</li>
+        <li>Important documents you store in the App (insurance policies, ID cards, property papers). Files you import or capture are copied into the App's own private storage on your device; we retain no reference to their original location</li>
         <li>Monthly outflow records and salary entries</li>
         <li>Payment reminders and due dates</li>
         <li>Notes you create within the App</li>
-        <li>App preferences (selected language, currency, appearance, biometric lock toggle, iCloud sync preference)</li>
+        <li>App preferences (selected language, currency, appearance, dashboard amount-mask preference, iCloud sync preference)</li>
       </ul>
       <p>If you delete the App, this data is removed from your device. If you have enabled iCloud sync, your iCloud copy persists according to your Apple iCloud settings.</p>
     </section>
@@ -463,7 +463,7 @@
       <p>Used only when you scan a receipt or import a receipt image, or when you capture a document for the document vault. The Receipt Scanner uses Apple's on-device <strong>Vision framework</strong> to extract text — no image or data is sent to any server. You can grant or revoke access at any time from iOS Settings &gt; Finance Toolkit.</p>
 
       <h3>Microphone &amp; <span class="it">Speech Recognition</span></h3>
-      <p>Used only when you activate the Voice Expense Assistant. The feature uses Apple's on-device <strong>Speech Recognition framework</strong> to transcribe what you say into an expense entry. No audio or transcript is sent to our servers. Speech processing may use Apple's servers depending on your iOS settings; this is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. You can grant or revoke both Microphone and Speech Recognition access at any time from iOS Settings &gt; Finance Toolkit.</p>
+      <p>Used only when you activate the Voice Expense Assistant. The feature uses Apple's on-device <strong>Speech Recognition framework</strong> to transcribe what you say into an expense entry. No audio or transcript is sent to our servers. Speech processing may use Apple's servers depending on your iOS settings; this is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. The same on-device transcription is used when you add an expense through the Siri shortcut; the expense is written directly to the App's local storage and nothing is sent to us. You can grant or revoke both Microphone and Speech Recognition access at any time from iOS Settings &gt; Finance Toolkit.</p>
 
       <h3>Files / <span class="it">Document access</span></h3>
       <p>Used only when you explicitly export data (PDF, CSV, JSON backup), import a backup file, import a bank statement (PDF or CSV) for transaction parsing, or import documents into the document vault. The App reads and writes files only with your direct action, and all parsing happens on your device.</p>
@@ -481,6 +481,7 @@
         <li><strong>Vision framework</strong> — for on-device OCR (Receipt Scanner)</li>
         <li><strong>Speech framework</strong> — for on-device voice transcription (Voice Expense Assistant)</li>
         <li><strong>PDFKit</strong> — for on-device bank statement parsing</li>
+        <li><strong>AppIntents / Siri</strong> — for the "Hey Siri, add expense" shortcut, which runs on your device</li>
         <li><strong>WidgetKit</strong> — for Home Screen and Lock Screen widgets</li>
         <li><strong>App Store</strong> — for distribution and updates</li>
       </ul>
@@ -512,7 +513,7 @@
       <ul>
         <li>The App uses Apple's standard data protection on iOS, which encrypts on-device storage when your device is locked with a passcode.</li>
         <li>Optional biometric / passcode lock adds an extra layer protecting access to the App.</li>
-        <li>Screenshot and screen recording prevention is enabled on sensitive screens (amortization, receipt scanner, bank import, expense and payment forms).</li>
+        <li>Screenshot and screen recording prevention is enabled on sensitive screens (amortization, receipt scanner, bank import, expense and payment forms, and the authentication gate).</li>
         <li>A privacy screen auto-hides content when the App moves to the background.</li>
         <li>iCloud sync uses Apple's encrypted transport and storage.</li>
         <li>The App has no network code beyond iCloud — there is no API to attack and no server-side database that could be breached.</li>
